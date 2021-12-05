@@ -103,7 +103,7 @@ const ScrolldownText = styled.div<TopStyleProps>`
 `;
 
 const Top: React.FC<TopComponentProps> = (props) => {
-  let topIndex = 1;
+  let topIndex = 0;
 
   return (
     <TopTotalContainer id="top" className="section 1">

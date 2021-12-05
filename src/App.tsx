@@ -1,6 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
-import { MapComponentProps, MapStyleProps } from "./types/types";
+import {
+  MapComponentProps,
+  MapStyleProps,
+  LoadingStyleProps,
+  AppMoveStyleProps,
+} from "./types/types";
 import "./App.css";
 import styled from "styled-components";
 import Nav from "./components/Nav/Nav";
@@ -9,8 +14,6 @@ import Project from "./components/Project/Project";
 import About from "./components/About/About";
 import Bottom from "./components/Bottom/Bottom";
 import BackLight from "./components/BackLight/BackLight";
-import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
-import { gsap, Power4 } from "gsap";
 
 const AppTotalContainer = styled.div`
   height: 400vh;
@@ -21,6 +24,20 @@ const AppTotalContainer = styled.div`
     rgba(89, 90, 102, 1) 95%
   );
   overflow-x: hidden;
+`;
+
+const AppMeaningfulSection = styled.section<AppMoveStyleProps>`
+  z-index: 15;
+  height: 100%;
+  top: ${(props) => {
+    return props.moveNumber ? `-${props.moveNumber * 25}%` : `0%`;
+  }};
+  transition: 1.5s;
+  position: relative;
+`;
+
+const AppMeaningfulnessSection = styled.section`
+  z-index: 15;
 `;
 
 const BackgroundGrad = styled.div`
@@ -62,10 +79,6 @@ const TotalEachMap = styled.a<MapStyleProps>`
   cursor: pointer;
 `;
 
-interface LoadingStyleProps {
-  loading: string;
-}
-
 const FirstLoadingGround = styled.div<LoadingStyleProps>`
   position: fixed;
   width: 100%;
@@ -73,7 +86,7 @@ const FirstLoadingGround = styled.div<LoadingStyleProps>`
   background-color: #040f1a;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   transform: ${(props) => {
     return props.loading === "1" ? "translateY(0%)" : "translateY(-100%)";
   }};
@@ -83,55 +96,72 @@ const FirstLoadingGround = styled.div<LoadingStyleProps>`
 `;
 
 const App = () => {
-  const [mapIndex, setMapIndex] = useState<number>(1);
+  const [mapIndex, setMapIndex] = useState<number>(0);
   const [nodeList, setNodeList] = useState<
     HTMLDivElement[] | NodeListOf<Element>
   >([]);
-  const [totalMap, setTotalMap] = useState<MapComponentProps[]>([
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const totalRef = useRef<any>(null);
+
+  let totalMap: MapComponentProps[] = [
     { id: 1, name: "top" },
     { id: 2, name: "project" },
     { id: 3, name: "about" },
     { id: 4, name: "bottom" },
-  ]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  ];
 
-  /*  GSAP  */
-  gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-  let scrollTween: null | gsap.core.Animation;
+  /* Debounce */
+
+  let scrollStatus = {
+    wheeling: false,
+    functionCall: false,
+  };
+  let scrollTimer: any = false;
+
+  /* Debounce */
 
   function goToSection(i: number) {
-    let number = i + 1;
-    setMapIndex(number);
-
-    // scrollTween = gsap.to(window, {
-    //   scrollTo: { y: i * window.innerHeight, autoKill: false },
-    //   duration: 2,
-    //   onComplete: () => (scrollTween = null),
-    //   overwrite: true,
-    //   ease: Power4.easeInOut,
-    // });
+    if (i < 0 || i > totalMap.length - 1) {
+      console.log("범위에서 벗어났습니다.");
+    } else {
+      let number = i;
+      setMapIndex(number);
+    }
   }
-  /*  GSAP  */
 
   useEffect(() => {
     if (nodeList.length > 0) {
-      setIsLoading(false);
-      nodeList.forEach((section: any, i: number) => {
-        ScrollTrigger.create({
-          trigger: section,
-          onEnter: () => goToSection(i + 1),
-          start: "0%",
-        });
-        ScrollTrigger.create({
-          trigger: section,
-          end: "99.5%",
-          onEnterBack: () => goToSection(i),
-        });
-      });
-    } else {
-      window.scrollTo(0, 0);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
     }
   }, [nodeList]);
+
+  useEffect(() => {
+    if (isLoading === false) {
+      nodeList.forEach((item, index) => {
+        item.addEventListener("wheel", (e: any) => {
+          e.preventDefault();
+          let deltaY = e.deltaY;
+          scrollStatus.wheeling = true;
+          if (!scrollStatus.functionCall) {
+            if (deltaY > 0) {
+              goToSection(index + 1);
+            }
+            if (deltaY < 0) {
+              goToSection(index - 1);
+            }
+            scrollStatus.functionCall = true;
+          }
+          window.clearInterval(scrollTimer);
+          scrollTimer = window.setTimeout(() => {
+            scrollStatus.wheeling = false;
+            scrollStatus.functionCall = false;
+          }, 50);
+        });
+      });
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     let sections: NodeListOf<Element> =
@@ -142,24 +172,28 @@ const App = () => {
   return (
     <AppTotalContainer>
       <Nav />
-      <Top index={mapIndex} />
-      <Project />
-      <About />
-      <Bottom />
-      <TotalMapContainer>
-        {totalMap.map((item) => {
-          return (
-            <TotalEachMap
-              key={item.id}
-              match1={item.id}
-              match2={mapIndex}
-              href={`#${item.name}`}
-            />
-          );
-        })}
-      </TotalMapContainer>
-      <BackgroundGrad />
-      <BackLight />
+      <AppMeaningfulSection ref={totalRef} moveNumber={mapIndex ? mapIndex : 0}>
+        <Top index={mapIndex ? mapIndex : 0} />
+        <Project />
+        <About />
+        <Bottom />
+      </AppMeaningfulSection>
+      <AppMeaningfulnessSection>
+        <TotalMapContainer>
+          {totalMap.map((item) => {
+            return (
+              <TotalEachMap
+                key={item.id}
+                match1={item.id}
+                match2={mapIndex ? mapIndex + 1 : 1}
+                href={`#${item.name}`}
+              />
+            );
+          })}
+        </TotalMapContainer>
+        <BackgroundGrad />
+        <BackLight />
+      </AppMeaningfulnessSection>
       <FirstLoadingGround loading={isLoading ? "1" : "0"} />
     </AppTotalContainer>
   );

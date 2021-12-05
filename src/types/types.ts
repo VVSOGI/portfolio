@@ -20,6 +20,14 @@ export interface LoadingStyleProps {
 
 /*------------------Loading------------------*/
 
+/*--------------------App--------------------*/
+
+export interface AppMoveStyleProps {
+  moveNumber: number;
+}
+
+/*--------------------App--------------------*/
+
 /*--------------------Top--------------------*/
 
 export interface TopStyleProps {

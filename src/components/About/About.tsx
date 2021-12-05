@@ -6,6 +6,7 @@ const AboutTotalContainer = styled.div`
   background-color: transparent;
   position: relative;
   z-index: 5;
+  background-color: #2323a1;
 `;
 
 const About = () => {
