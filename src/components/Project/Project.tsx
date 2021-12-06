@@ -6,7 +6,6 @@ const ProjectTotalContainer = styled.div`
   background-color: transparent;
   position: relative;
   z-index: 5;
-  background-color: blanchedalmond;
 `;
 
 const Project = () => {

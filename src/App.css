@@ -10,3 +10,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.left ul li a span {
+  background: #fff !important;
+}

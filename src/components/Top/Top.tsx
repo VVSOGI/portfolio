@@ -1,7 +1,12 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Line from "../Line/Line";
-import { TopStyleProps, TopComponentProps } from "../../types/types";
+import { Mousemove } from "../../functions/Mousemove/Mousemove";
+import {
+  TopStyleProps,
+  TopComponentProps,
+  TopRockStyleProps,
+} from "../../types/types";
 
 const TopTotalContainer = styled.div`
   height: 100vh;
@@ -10,25 +15,59 @@ const TopTotalContainer = styled.div`
   z-index: 5;
 `;
 
-const EarthImage = styled.img`
+const EarthImage = styled.img<TopStyleProps>`
   position: absolute;
   width: 30em;
   height: 30em;
-  right: 100px;
-  top: 140px;
+  right: ${(props) => {
+    return props.mosPos?.length ? `${100 - props.mosPos[0]}px` : "100px";
+  }};
+  top: ${(props) => {
+    return props.mosPos?.length ? `${140 + props.mosPos[1]}px` : "140px";
+  }};
   z-index: 2;
+  transform: ${(props) => {
+    return props.componentIndex === props.propsIndex
+      ? "translateX(0%)"
+      : "translateX(100%)";
+  }};
+  opacity: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1" : "0";
+  }};
+  transition: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1s" : "0.5s";
+  }};
+  transition-delay: ${(props) => {
+    return props.componentIndex === props.propsIndex
+      ? `${props.isMouseMove ? "0s" : "0.5s"}`
+      : "0s";
+  }};
 `;
 
-const PortfolioText = styled.div`
+const PortfolioText = styled.div<TopStyleProps>`
   font-size: 64px;
   position: absolute;
-  color: #ffed9b;
+  color: #fd5656;
   right: 15%;
   top: 45%;
   z-index: 3;
   font-weight: 600;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.493);
   letter-spacing: 8px;
+  transform: ${(props) => {
+    return props.componentIndex === props.propsIndex
+      ? "translateX(0%)"
+      : "translateX(100%)";
+  }};
+  opacity: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1" : "0";
+  }};
+  transition: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1s" : "0.5s";
+  }};
+  transition-delay: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1s" : "0s";
+  }};
 `;
 
 const NameTextContainer = styled.div`
@@ -53,8 +92,11 @@ const NameText = styled.div<TopStyleProps>`
       ? "translateX(0%)"
       : "translateX(-100%)";
   }};
-  text-shadow: 0 0px 20px rgba(156, 156, 156, 0.281);
   transition: 1s;
+  transition-delay: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "0.7s" : "0s";
+  }};
+  text-shadow: 0 0px 20px rgba(156, 156, 156, 0.281);
 `;
 //-100.5
 const FrontendText = styled.div<TopStyleProps>`
@@ -71,6 +113,9 @@ const FrontendText = styled.div<TopStyleProps>`
       : "translateX(-100.5%)";
   }};
   transition: 1s;
+  transition-delay: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1.2s" : "0s";
+  }};
   background-color: transparent;
 `;
 
@@ -102,25 +147,110 @@ const ScrolldownText = styled.div<TopStyleProps>`
   }
 `;
 
+const RockImage = styled.img<TopRockStyleProps>`
+  position: absolute;
+  right: ${(props) => {
+    return props.right && props.mospos
+      ? `${props.right - props.mospos[0]}px`
+      : `${props.right}px`;
+  }};
+  top: ${(props) => {
+    return props.top && props.mospos
+      ? `${props.top - props.mospos[1]}px`
+      : `${props.top}px`;
+  }};
+  z-index: 10;
+  transform: ${(props) => {
+    if (props.scale && props.rotate) {
+      return `${`rotate(${props.rotate}) scale(${props.scale}) translateX(${
+        props.propsIndex === props.componentIndex ? "0%" : "100%"
+      })`}`;
+    }
+  }};
+  opacity: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1" : "0";
+  }};
+  transition: ${(props) => {
+    return props.componentIndex === props.propsIndex ? "1s" : "0.5s";
+  }};
+  transition-delay: ${(props) => {
+    return props.componentIndex === props.propsIndex
+      ? `${props.isMouseMove ? "0s" : "0.5s"}`
+      : "0s";
+  }};
+`;
+
 const Top: React.FC<TopComponentProps> = (props) => {
-  let topIndex = 0;
+  const [mosPos, setMosPos] = useState<number[]>([0, 0]);
+  const [isMouseMove, setIsMouseMove] = useState<boolean>(false);
+  let topIndex = 1;
+  const RockArray: TopRockStyleProps[] = [
+    { right: 50, top: 60, scale: "0.3", rotate: "180deg" },
+    { right: 20, top: 280, scale: "0.2", rotate: "30deg" },
+    { right: 80, top: 500, scale: "0.1", rotate: "270deg" },
+    { right: 480, top: 120, scale: "0.2", rotate: "70deg" },
+    { right: 480, top: 480, scale: "0.5", rotate: "30deg" },
+  ];
+
+  let timer: any;
+
+  useEffect(() => {
+    document.querySelector("#top")?.addEventListener("mousemove", (e) => {
+      if (!timer) {
+        if (!isMouseMove) {
+          setIsMouseMove(true);
+        }
+        let test = Mousemove(e);
+        setMosPos(test);
+        timer = setTimeout(() => {
+          timer = null;
+        }, 20);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (props.index !== topIndex) setIsMouseMove(false);
+  }, [props.index]);
 
   return (
     <TopTotalContainer id="top" className="section 1">
-      <EarthImage src="/images/earth.png"></EarthImage>
-      <PortfolioText>PORTFOLIO</PortfolioText>
+      <EarthImage
+        componentIndex={topIndex}
+        propsIndex={props.index}
+        mosPos={mosPos}
+        isMouseMove={isMouseMove}
+        src="/images/earth.png"
+      ></EarthImage>
+      <PortfolioText componentIndex={topIndex} propsIndex={props.index}>
+        PORTFOLIO
+      </PortfolioText>
       <NameTextContainer>
         <NameText componentIndex={topIndex} propsIndex={props.index}>
           WOOSEOK KIM
         </NameText>
         <FrontendText componentIndex={topIndex} propsIndex={props.index}>
-          Frontend Developer / Clever communicator
+          Frontend Developer / <br /> Clever communicator
         </FrontendText>
       </NameTextContainer>
-      <Line />
       <ScrolldownText componentIndex={topIndex} propsIndex={props.index}>
         SCROLLDOWN
       </ScrolldownText>
+      {RockArray.map((item) => {
+        return (
+          <RockImage
+            right={item.right}
+            top={item.top}
+            scale={item.scale}
+            rotate={item.rotate}
+            componentIndex={topIndex}
+            propsIndex={props.index}
+            mospos={mosPos}
+            isMouseMove={isMouseMove}
+            src="/images/rock.png"
+          />
+        );
+      })}
     </TopTotalContainer>
   );
 };

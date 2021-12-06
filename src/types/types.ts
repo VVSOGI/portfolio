@@ -33,10 +33,23 @@ export interface AppMoveStyleProps {
 export interface TopStyleProps {
   componentIndex: number;
   propsIndex: number;
+  mosPos?: number[];
+  isMouseMove?: boolean;
 }
 
 export interface TopComponentProps {
   index: number;
+}
+
+export interface TopRockStyleProps {
+  right: number;
+  top: number;
+  scale: string;
+  rotate: string;
+  componentIndex?: number;
+  propsIndex?: number;
+  mospos?: number[];
+  isMouseMove?: boolean;
 }
 
 /*--------------------Top--------------------*/

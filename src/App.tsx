@@ -14,6 +14,10 @@ import Project from "./components/Project/Project";
 import About from "./components/About/About";
 import Bottom from "./components/Bottom/Bottom";
 import BackLight from "./components/BackLight/BackLight";
+import $ from "jquery";
+import "fullpage.js/vendors/scrolloverflow";
+import "fullpage.js";
+import "fullpage.js/dist/jquery.fullpage.min.css";
 
 const AppTotalContainer = styled.div`
   height: 400vh;
@@ -29,9 +33,6 @@ const AppTotalContainer = styled.div`
 const AppMeaningfulSection = styled.section<AppMoveStyleProps>`
   z-index: 15;
   height: 100%;
-  top: ${(props) => {
-    return props.moveNumber ? `-${props.moveNumber * 25}%` : `0%`;
-  }};
   transition: 1.5s;
   position: relative;
 `;
@@ -51,32 +52,6 @@ const BackgroundGrad = styled.div`
   background: rgb(0, 0, 0);
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 70%, #1e5c9e 105%);
   z-index: 1;
-`;
-
-const TotalMapContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 10em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  z-index: 10;
-  top: 37%;
-  left: 3%;
-  .on {
-    width: 3em;
-  }
-`;
-
-const TotalEachMap = styled.a<MapStyleProps>`
-  transition: 1s;
-  width: ${(item) => {
-    return item.match1 === item.match2 ? "4em" : "2em";
-  }};
-  height: 4px;
-  background-color: #fff;
-  cursor: pointer;
 `;
 
 const FirstLoadingGround = styled.div<LoadingStyleProps>`
@@ -103,94 +78,45 @@ const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const totalRef = useRef<any>(null);
 
-  let totalMap: MapComponentProps[] = [
-    { id: 1, name: "top" },
-    { id: 2, name: "project" },
-    { id: 3, name: "about" },
-    { id: 4, name: "bottom" },
-  ];
-
-  /* Debounce */
-
-  let scrollStatus = {
-    wheeling: false,
-    functionCall: false,
-  };
-  let scrollTimer: any = false;
-
-  /* Debounce */
-
-  function goToSection(i: number) {
-    if (i < 0 || i > totalMap.length - 1) {
-      console.log("범위에서 벗어났습니다.");
-    } else {
-      let number = i;
-      setMapIndex(number);
-    }
-  }
-
   useEffect(() => {
-    if (nodeList.length > 0) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 300);
-    }
-  }, [nodeList]);
+    setTimeout(() => {
+      setIsLoading(false);
+      setMapIndex(1);
+    }, 300);
 
-  useEffect(() => {
-    if (isLoading === false) {
-      nodeList.forEach((item, index) => {
-        item.addEventListener("wheel", (e: any) => {
-          e.preventDefault();
-          let deltaY = e.deltaY;
-          scrollStatus.wheeling = true;
-          if (!scrollStatus.functionCall) {
-            if (deltaY > 0) {
-              goToSection(index + 1);
-            }
-            if (deltaY < 0) {
-              goToSection(index - 1);
-            }
-            scrollStatus.functionCall = true;
-          }
-          window.clearInterval(scrollTimer);
-          scrollTimer = window.setTimeout(() => {
-            scrollStatus.wheeling = false;
-            scrollStatus.functionCall = false;
-          }, 50);
-        });
+    /* Fullpage.js */
+
+    $((): void => {
+      $("#fullpage").fullpage({
+        autoScrolling: true,
+        navigation: true,
+        scrollingSpeed: 1200,
+        navigationPosition: "left",
+        css3: true,
+        easingcss3: "cubic-bezier(.74,.22,.26,1.01)",
+        onLeave: (origin: object, destination: number, direction: string) => {
+          setMapIndex(destination);
+        },
       });
-    }
-  }, [isLoading]);
+    });
 
-  useEffect(() => {
-    let sections: NodeListOf<Element> =
-      document.body.querySelectorAll(".section");
-    setNodeList(sections);
+    /* Fullpage.js */
   }, []);
 
   return (
     <AppTotalContainer>
       <Nav />
-      <AppMeaningfulSection ref={totalRef} moveNumber={mapIndex ? mapIndex : 0}>
+      <AppMeaningfulSection
+        id="fullpage"
+        ref={totalRef}
+        moveNumber={mapIndex ? mapIndex : 1}
+      >
         <Top index={mapIndex ? mapIndex : 0} />
         <Project />
         <About />
         <Bottom />
       </AppMeaningfulSection>
       <AppMeaningfulnessSection>
-        <TotalMapContainer>
-          {totalMap.map((item) => {
-            return (
-              <TotalEachMap
-                key={item.id}
-                match1={item.id}
-                match2={mapIndex ? mapIndex + 1 : 1}
-                href={`#${item.name}`}
-              />
-            );
-          })}
-        </TotalMapContainer>
         <BackgroundGrad />
         <BackLight />
       </AppMeaningfulnessSection>
