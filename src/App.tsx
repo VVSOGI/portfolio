@@ -22,11 +22,7 @@ import "fullpage.js/dist/jquery.fullpage.min.css";
 const AppTotalContainer = styled.div`
   height: 400vh;
   background: rgb(13, 41, 70);
-  background: linear-gradient(
-    90deg,
-    rgba(13, 41, 70, 1) 80%,
-    rgba(89, 90, 102, 1) 95%
-  );
+  background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 35%);
   overflow-x: hidden;
 `;
 
@@ -44,13 +40,12 @@ const AppMeaningfulnessSection = styled.section`
 const BackgroundGrad = styled.div`
   position: fixed;
   top: 0;
-  left: -70%;
+  left: -84.5%;
   width: 100%;
   height: 100%;
-  transform: skew(40deg);
+  transform: skew(30deg);
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.6);
-  background: rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 70%, #1e5c9e 105%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #b11212dc 105%);
   z-index: 1;
 `;
 

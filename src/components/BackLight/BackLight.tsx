@@ -1,16 +1,44 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Mousemove } from "../../functions/Mousemove/Mousemove";
 
-const SvgTotalContainer = styled.svg`
+interface BackLightStyleProps {
+  mosPos: number[];
+}
+
+const SvgTotalContainer = styled.svg<BackLightStyleProps>`
   position: fixed;
-  top: 90px;
-  right: 50px;
+  top: ${(props) => {
+    return props.mosPos ? `${90 + props.mosPos[1]}px` : "90px";
+  }};
+  right: ${(props) => {
+    return props.mosPos ? `${50 - props.mosPos[0]}px` : "50px";
+  }};
   transform: scale(2);
+  transition: 1s;
 `;
 
 const BackLight = () => {
+  const [mosPos, setMosPos] = useState<number[]>([0, 0]);
+
+  let timer: any;
+  useEffect(() => {
+    window.addEventListener("mousemove", (e) => {
+      if (!timer) {
+        let test = Mousemove(e);
+        setMosPos(test);
+        timer = setTimeout(() => {
+          timer = null;
+        }, 20);
+      }
+    });
+  }, []);
+
   return (
     <SvgTotalContainer
+      mosPos={mosPos}
+      id="background"
       width="581"
       height="581"
       viewBox="0 0 581 581"
