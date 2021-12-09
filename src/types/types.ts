@@ -37,10 +37,6 @@ export interface TopStyleProps {
   isMouseMove?: boolean;
 }
 
-export interface TopComponentProps {
-  index: number;
-}
-
 export interface TopRockStyleProps {
   right: number;
   top: number;
@@ -53,3 +49,39 @@ export interface TopRockStyleProps {
 }
 
 /*--------------------Top--------------------*/
+
+/*---------------TextAndImages---------------*/
+
+export interface TextformProps {
+  indexMatch: boolean;
+  headText: string;
+  summaryText: string;
+}
+
+export interface TextAndImageStyleProps {
+  isMatch: boolean;
+}
+
+export interface ImageformProps {
+  indexMatch: boolean;
+  imageSrc: string;
+}
+
+export interface NumberformProps {
+  indexMatch: boolean;
+  number: string;
+}
+
+export interface NumberOrderStyleProps {
+  isMatch: boolean;
+}
+
+/*---------------TextAndImages---------------*/
+
+/*--------------------All--------------------*/
+
+export interface AllComponentProps {
+  index: number;
+}
+
+/*--------------------All--------------------*/

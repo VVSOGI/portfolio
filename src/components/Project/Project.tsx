@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { AllComponentProps } from "../../types/types";
+import Imageform from "../Imageform/Imageform";
+import MapNumber from "../MapNumber/MapNumber";
+import Textform from "../Textform/Textform";
 
 const ProjectTotalContainer = styled.div`
   height: 100vh;
@@ -8,12 +12,33 @@ const ProjectTotalContainer = styled.div`
   z-index: 5;
 `;
 
-const Project = () => {
+const Project: React.FC<AllComponentProps> = (props) => {
+  const [isIndexMatch, setIsIndexMatch] = useState<boolean>(false);
+  const ProjectIndex = 2;
+  const projectObject = {
+    headText: `FIND RECIPES \nBOBPAGO`,
+    summaryText: "Enjoy the Recipe that Alphago AI recommends.",
+  };
+  const imageSource: string = "/images/bobpago.png";
+
+  useEffect(() => {
+    if (props.index === ProjectIndex) {
+      setIsIndexMatch(true);
+    } else {
+      setIsIndexMatch(false);
+    }
+  }, [props.index]);
+
   return (
-    <ProjectTotalContainer
-      id="project"
-      className="section 2"
-    ></ProjectTotalContainer>
+    <ProjectTotalContainer id="project" className="section 2">
+      <Textform
+        headText={projectObject.headText}
+        summaryText={projectObject.summaryText}
+        indexMatch={isIndexMatch}
+      />
+      <Imageform indexMatch={isIndexMatch} imageSrc={imageSource} />
+      <MapNumber indexMatch={isIndexMatch} number={`0${ProjectIndex - 1}`} />
+    </ProjectTotalContainer>
   );
 };
 

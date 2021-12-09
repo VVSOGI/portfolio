@@ -21,12 +21,12 @@ import "fullpage.js/dist/jquery.fullpage.min.css";
 
 const AppTotalContainer = styled.div`
   height: 400vh;
-  background: rgb(13, 41, 70);
-  background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 35%);
+  background: rgb(26, 20, 20);
+  background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 65%);
   overflow-x: hidden;
 `;
 
-const AppMeaningfulSection = styled.section<AppMoveStyleProps>`
+const AppMeaningfulSection = styled.section`
   z-index: 15;
   height: 100%;
   transition: 1.5s;
@@ -43,9 +43,9 @@ const BackgroundGrad = styled.div`
   left: -84.5%;
   width: 100%;
   height: 100%;
-  transform: skew(30deg);
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #b11212dc 105%);
+  transform: skew(0deg);
+  box-shadow: 0 0 100px rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #3c76cedc 105%);
   z-index: 1;
 `;
 
@@ -101,14 +101,10 @@ const App = () => {
   return (
     <AppTotalContainer>
       <Nav />
-      <AppMeaningfulSection
-        id="fullpage"
-        ref={totalRef}
-        moveNumber={mapIndex ? mapIndex : 1}
-      >
-        <Top index={mapIndex ? mapIndex : 0} />
-        <Project />
-        <About />
+      <AppMeaningfulSection id="fullpage" ref={totalRef}>
+        <Top index={mapIndex} />
+        <Project index={mapIndex} />
+        <About index={mapIndex} />
         <Bottom />
       </AppMeaningfulSection>
       <AppMeaningfulnessSection>

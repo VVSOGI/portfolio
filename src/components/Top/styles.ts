@@ -71,7 +71,7 @@ export const PortfolioText = styled.div<TopStyleProps>`
 export const NameTextContainer = styled.div`
   position: absolute;
   left: 0%;
-  top: 25%;
+  top: 30%;
   margin-left: 9.5%;
   width: 100%;
   overflow: hidden;
@@ -94,7 +94,7 @@ export const NameText = styled.div<TopStyleProps>`
   transition-delay: ${(props) => {
     return props.componentIndex === props.propsIndex ? "0.7s" : "0s";
   }};
-  text-shadow: 0 0px 20px rgba(156, 156, 156, 0.281);
+  text-shadow: 0 0px 5px rgba(235, 235, 235, 0.381);
 `;
 
 export const FrontendText = styled.div<TopStyleProps>`
@@ -104,13 +104,13 @@ export const FrontendText = styled.div<TopStyleProps>`
   top: 42%;
   font-size: 24px;
   font-weight: 400;
-  text-shadow: 0 0px 5px rgba(250, 250, 250, 0.5);
+  text-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
   transform: ${(props) => {
     return props.componentIndex === props.propsIndex
       ? "translateX(0%)"
       : "translateX(-100.5%)";
   }};
-  transition: 1s;
+  transition: 0.5s;
   transition-delay: ${(props) => {
     return props.componentIndex === props.propsIndex ? "1.2s" : "0s";
   }};

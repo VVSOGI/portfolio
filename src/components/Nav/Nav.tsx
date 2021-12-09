@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const NavTotalContainer = styled.div`
   width: 100%;
-  padding: 2em 1.5em;
+  padding: 1em 1.5em;
   position: fixed;
   display: flex;
   justify-content: space-between;

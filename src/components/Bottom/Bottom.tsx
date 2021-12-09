@@ -6,7 +6,6 @@ const BottomTotalContainer = styled.div`
   background-color: transparent;
   position: relative;
   z-index: 5;
-  background-color: brown;
 `;
 
 const Bottom = () => {

@@ -49,7 +49,7 @@ const BackLight = () => {
         cx="290.5"
         cy="290.498"
         r="145.25"
-        fill="#8ea9cc"
+        fill="#2f4868"
         fill-opacity="0.4"
       />
       <ellipse
@@ -57,7 +57,7 @@ const BackLight = () => {
         cy="290.498"
         rx="96.8334"
         ry="96.8333"
-        fill="#8ea9cc"
+        fill="#2f4868"
         fill-opacity="0.7"
       />
       <ellipse
@@ -65,7 +65,7 @@ const BackLight = () => {
         cy="290.499"
         rx="193.667"
         ry="193.667"
-        fill="#8ea9cc"
+        fill="#2f4868"
         fill-opacity="0.3"
       />
       <ellipse
@@ -73,14 +73,14 @@ const BackLight = () => {
         cy="290.5"
         rx="242.083"
         ry="242.083"
-        fill="#8ea9cc"
+        fill="#2f4868"
         fill-opacity="0.2"
       />
       <circle
         cx="290.5"
         cy="290.5"
         r="290.5"
-        fill="#8ea9cc"
+        fill="#2f4868"
         fill-opacity="0.1"
       />
       <ellipse cx="158.323" cy="128.303" rx="1.4" ry="1.4" fill="white" />
