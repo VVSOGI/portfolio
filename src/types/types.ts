@@ -56,10 +56,15 @@ export interface TextformProps {
   indexMatch: boolean;
   headText: string;
   summaryText: string;
+  position?: string;
 }
 
 export interface TextAndImageStyleProps {
   isMatch: boolean;
+}
+
+export interface TextContainerStyleProps {
+  position: string | null;
 }
 
 export interface ImageformProps {

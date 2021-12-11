@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Mousemove } from "../../functions/Mousemove/Mousemove";
+import { Mousemove } from "../../../functions/Mousemove/Mousemove";
 
 interface BackLightStyleProps {
   mosPos: number[];
@@ -30,7 +30,7 @@ const BackLight = () => {
         setMosPos(test);
         timer = setTimeout(() => {
           timer = null;
-        }, 20);
+        }, 50);
       }
     });
   }, []);

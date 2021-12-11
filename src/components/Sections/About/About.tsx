@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { AllComponentProps } from "../../types/types";
-import Imageform from "../Imageform/Imageform";
-import MapNumber from "../MapNumber/MapNumber";
-import Textform from "../Textform/Textform";
+import { AllComponentProps } from "../../../types/types";
+import Imageform from "../../Forms/Imageform/Imageform";
+import MapNumber from "../../StyleOnly/MapNumber/MapNumber";
+import Textform from "../../Forms/Textform/Textform";
 
 const AboutTotalContainer = styled.div`
   height: 100vh;
@@ -35,6 +35,7 @@ const About: React.FC<AllComponentProps> = (props) => {
         headText={aboutObject.headText}
         summaryText={aboutObject.summaryText}
         indexMatch={isIndexMatch}
+        position={"25%"}
       />
       <Imageform indexMatch={isIndexMatch} imageSrc={imageSource} />
       <MapNumber indexMatch={isIndexMatch} number={`0${aboutIndex - 1}`} />

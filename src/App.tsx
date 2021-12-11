@@ -1,19 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
-import {
-  MapComponentProps,
-  MapStyleProps,
-  LoadingStyleProps,
-  AppMoveStyleProps,
-} from "./types/types";
+import { LoadingStyleProps } from "./types/types";
 import "./App.css";
 import styled from "styled-components";
 import Nav from "./components/Nav/Nav";
-import Top from "./components/Top/Top";
-import Project from "./components/Project/Project";
-import About from "./components/About/About";
-import Bottom from "./components/Bottom/Bottom";
-import BackLight from "./components/BackLight/BackLight";
+import Top from "./components/Sections/Top/Top";
+import Project from "./components/Sections/Project/Project";
+import About from "./components/Sections/About/About";
+import Bottom from "./components/Sections/Bottom/Bottom";
+import BackLight from "./components/StyleOnly/BackLight/BackLight";
 import $ from "jquery";
 import "fullpage.js/vendors/scrolloverflow";
 import "fullpage.js";
@@ -67,17 +62,17 @@ const FirstLoadingGround = styled.div<LoadingStyleProps>`
 
 const App = () => {
   const [mapIndex, setMapIndex] = useState<number>(0);
-  const [nodeList, setNodeList] = useState<
-    HTMLDivElement[] | NodeListOf<Element>
-  >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const totalRef = useRef<any>(null);
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-      setMapIndex(1);
     }, 300);
+  }, [setMapIndex]);
+
+  useEffect(() => {
+    setMapIndex(1);
 
     /* Fullpage.js */
 
@@ -105,7 +100,7 @@ const App = () => {
         <Top index={mapIndex} />
         <Project index={mapIndex} />
         <About index={mapIndex} />
-        <Bottom />
+        <Bottom index={mapIndex} />
       </AppMeaningfulSection>
       <AppMeaningfulnessSection>
         <BackgroundGrad />

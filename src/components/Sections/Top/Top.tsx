@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Mousemove } from "../../functions/Mousemove/Mousemove";
-import { TextScramble } from "../../functions/TextScramble/TextScramble";
-import { AllComponentProps, TopRockStyleProps } from "../../types/types";
+import { Mousemove } from "../../../functions/Mousemove/Mousemove";
+import { TextScramble } from "../../../functions/TextScramble/TextScramble";
+import { AllComponentProps, TopRockStyleProps } from "../../../types/types";
 import {
   TopTotalContainer,
   EarthImage,

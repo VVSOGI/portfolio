@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NumberformProps, NumberOrderStyleProps } from "../../types/types";
+import { NumberformProps, NumberOrderStyleProps } from "../../../types/types";
 
 const MapNumberContainer = styled.div<NumberOrderStyleProps>`
   position: absolute;

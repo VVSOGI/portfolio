@@ -1,10 +1,16 @@
 import styled from "styled-components";
-import { TextformProps, TextAndImageStyleProps } from "../../types/types";
+import {
+  TextformProps,
+  TextAndImageStyleProps,
+  TextContainerStyleProps,
+} from "../../../types/types";
 
-const TextComingContainer = styled.div`
+const TextComingContainer = styled.div<TextContainerStyleProps>`
   position: absolute;
   left: 0%;
-  top: 20%;
+  top: ${(props) => {
+    return props.position ? `${props.position}` : "20%";
+  }};
   margin-left: 9.5%;
   width: 45%;
   overflow: hidden;
@@ -27,7 +33,7 @@ const HeadText = styled.pre<TextAndImageStyleProps>`
 `;
 
 const SummaryText = styled.pre<TextAndImageStyleProps>`
-  margin-top: 4em;
+  margin-top: 2em;
   font-size: 24px;
   font-weight: 500;
   transform: ${(props) => {
@@ -95,7 +101,7 @@ const ComingLine = styled.div<TextAndImageStyleProps>`
 
 const Textform: React.FC<TextformProps> = (props) => {
   return (
-    <TextComingContainer>
+    <TextComingContainer position={props.position ? props.position : null}>
       <HeadText isMatch={props.indexMatch}>{props.headText}</HeadText>
       <ComingLine isMatch={props.indexMatch} />
       <SummaryText isMatch={props.indexMatch}>{props.summaryText}</SummaryText>

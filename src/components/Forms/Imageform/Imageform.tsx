@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ImageformProps, TextAndImageStyleProps } from "../../types/types";
+import { ImageformProps, TextAndImageStyleProps } from "../../../types/types";
 
 const ImageTotalContianer = styled.div<TextAndImageStyleProps>`
   position: absolute;
