@@ -94,7 +94,7 @@ export const NameText = styled.div<TopStyleProps>`
   transition-delay: ${(props) => {
     return props.componentIndex === props.propsIndex ? "0.7s" : "0s";
   }};
-  text-shadow: 0 0px 5px rgba(235, 235, 235, 0.381);
+  text-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
 `;
 
 export const FrontendText = styled.div<TopStyleProps>`

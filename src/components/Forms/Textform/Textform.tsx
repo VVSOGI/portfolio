@@ -17,6 +17,7 @@ const TextComingContainer = styled.div<TextContainerStyleProps>`
   height: 100%;
   color: #fff;
   z-index: 5;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 `;
 
 const HeadText = styled.pre<TextAndImageStyleProps>`
@@ -35,7 +36,7 @@ const HeadText = styled.pre<TextAndImageStyleProps>`
 const SummaryText = styled.pre<TextAndImageStyleProps>`
   margin-top: 2em;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 400;
   transform: ${(props) => {
     return props.isMatch ? `translateX(0%)` : `translateX(-100%)`;
   }};

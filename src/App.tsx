@@ -40,7 +40,7 @@ const BackgroundGrad = styled.div`
   height: 100%;
   transform: skew(0deg);
   box-shadow: 0 0 100px rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #3c76cedc 105%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #ec4949 105%);
   z-index: 1;
 `;
 
@@ -66,14 +66,11 @@ const App = () => {
   const totalRef = useRef<any>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
+    setIsLoading(false);
   }, [setMapIndex]);
 
   useEffect(() => {
     setMapIndex(1);
-
     /* Fullpage.js */
 
     $((): void => {
