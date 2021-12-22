@@ -13,6 +13,8 @@ import $ from "jquery";
 import "fullpage.js/vendors/scrolloverflow";
 import "fullpage.js";
 import "fullpage.js/dist/jquery.fullpage.min.css";
+import { Route, Routes } from "react-router-dom";
+import ProjectPage from "./pages/ProjectPage/ProjectPage";
 
 const AppTotalContainer = styled.div`
   height: 400vh;
@@ -40,7 +42,8 @@ const BackgroundGrad = styled.div`
   height: 100%;
   transform: skew(0deg);
   box-shadow: 0 0 100px rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #ec4949 105%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #000 70%);
+
   z-index: 1;
 `;
 
@@ -91,20 +94,28 @@ const App = () => {
   }, []);
 
   return (
-    <AppTotalContainer>
-      <Nav />
-      <AppMeaningfulSection id="fullpage" ref={totalRef}>
-        <Top index={mapIndex} />
-        <Project index={mapIndex} />
-        <About index={mapIndex} />
-        <Bottom index={mapIndex} />
-      </AppMeaningfulSection>
-      <AppMeaningfulnessSection>
-        <BackgroundGrad />
-        <BackLight />
-      </AppMeaningfulnessSection>
-      <FirstLoadingGround loading={isLoading ? "1" : "0"} />
-    </AppTotalContainer>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <AppTotalContainer>
+            <Nav />
+            <AppMeaningfulSection id="fullpage" ref={totalRef}>
+              <Top index={mapIndex} />
+              <Project index={mapIndex} />
+              <About index={mapIndex} />
+              <Bottom index={mapIndex} />
+            </AppMeaningfulSection>
+            <AppMeaningfulnessSection>
+              <BackgroundGrad />
+              <BackLight />
+            </AppMeaningfulnessSection>
+            <FirstLoadingGround loading={isLoading ? "1" : "0"} />
+          </AppTotalContainer>
+        }
+      />
+      <Route path="/project" element={<ProjectPage />} />
+    </Routes>
   );
 };
 

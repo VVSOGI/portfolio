@@ -5,56 +5,85 @@ import { ImageformProps, TextAndImageStyleProps } from "../../../types/types";
 const ImageTotalContianer = styled.div<TextAndImageStyleProps>`
   position: absolute;
   width: ${(props) => {
-    return props.isMatch ? `50%` : `35%`;
+    if (props.pageRender === true) {
+      return "65%";
+    }
+    return props.isMatch || props.animationOn === false ? `50%` : `35%`;
   }};
   height: ${(props) => {
-    return props.isMatch ? `70%` : `70%`;
+    if (props.pageRender === true) {
+      return "100%";
+    }
+    return props.isMatch || props.animationOn === false ? `70%` : `70%`;
   }};
-  top: 15%;
-  right: 8%;
+  top: ${(props) => {
+    if (props.pageRender === true) {
+      return "0%";
+    } else {
+      return "15%";
+    }
+  }};
+  right: ${(props) => {
+    if (props.pageRender === true) {
+      return "0%";
+    } else {
+      return "8%";
+    }
+  }};
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
-  border-radius: 10px;
+  border-radius: ${(props) => {
+    if (props.pageRender === true) {
+      return "0px";
+    } else {
+      return "10px";
+    }
+  }};
   transform: ${(props) => {
-    return props.isMatch ? `translateX(0%)` : `translateX(20%)`;
+    return props.isMatch || props.animationOn === false
+      ? `translateX(0%)`
+      : `translateX(20%)`;
   }};
   transition: 1s;
   transition-delay: ${(props) => {
-    return props.isMatch ? `0.7s` : `0s`;
+    return props.isMatch ? `0.7s` : `0.2s`;
   }};
   opacity: ${(props) => {
-    return props.isMatch ? `1` : `0`;
+    return props.isMatch || props.animationOn === false ? `1` : `0`;
   }};
   overflow: hidden;
+  z-index: 1;
 `;
 
 const SudoContainer = styled.div<TextAndImageStyleProps>`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 101%;
   height: 100%;
   background-color: #0f4786;
   transform: ${(props) => {
-    return props.isMatch ? `translateX(100%)` : `translateX(0%)`;
+    return props.isMatch || props.animationOn === false
+      ? `translateX(100%)`
+      : `translateX(0%)`;
   }};
   transition: 1.5s;
   transition-delay: ${(props) => {
-    return props.isMatch ? `1s` : `0s`;
+    return props.isMatch || props.animationOn === false ? `1s` : `0s`;
   }};
   ::before {
     width: ${(props) => {
-      return props.isMatch ? `100%` : `0%`;
+      return props.isMatch || props.animationOn === false ? `100%` : `0%`;
     }};
     transition: 1.5s;
     transition-delay: ${(props) => {
-      return props.isMatch ? `1s` : `0s`;
+      return props.isMatch || props.animationOn === false ? `1s` : `0s`;
     }};
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     content: "";
-    background-color: #ff6c6c;
+    background-color: #92a6ff;
   }
 `;
 
@@ -63,7 +92,7 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: 1s;
   cursor: pointer;
   :hover {
@@ -73,9 +102,16 @@ const Image = styled.img`
 
 const Imageform: React.FC<ImageformProps> = (props) => {
   return (
-    <ImageTotalContianer isMatch={props.indexMatch}>
+    <ImageTotalContianer
+      animationOn={props.pageIndex === 0 ? false : true}
+      pageRender={props.pageRender}
+      isMatch={props.indexMatch}
+    >
       <Image src={props.imageSrc} />
-      <SudoContainer isMatch={props.indexMatch} />
+      <SudoContainer
+        animationOn={props.pageIndex === 0 ? false : true}
+        isMatch={props.indexMatch}
+      />
     </ImageTotalContianer>
   );
 };

@@ -94,9 +94,10 @@ const Top: React.FC<AllComponentProps> = (props) => {
       <ScrolldownText componentIndex={topIndex} propsIndex={props.index}>
         SCROLLDOWN
       </ScrolldownText>
-      {RockArray.map((item) => {
+      {RockArray.map((item, index) => {
         return (
           <RockImage
+            key={index}
             right={item.right}
             top={item.top}
             scale={item.scale}

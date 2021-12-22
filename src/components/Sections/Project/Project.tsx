@@ -35,6 +35,7 @@ const Project: React.FC<AllComponentProps> = (props) => {
         headText={projectObject.headText}
         summaryText={projectObject.summaryText}
         indexMatch={isIndexMatch}
+        pageIndex={props.index}
       />
       <Imageform indexMatch={isIndexMatch} imageSrc={imageSource} />
       <MapNumber indexMatch={isIndexMatch} number={`0${ProjectIndex - 1}`} />

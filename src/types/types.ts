@@ -57,10 +57,13 @@ export interface TextformProps {
   headText: string;
   summaryText: string;
   position?: string;
+  pageIndex?: number;
 }
 
 export interface TextAndImageStyleProps {
   isMatch: boolean;
+  animationOn?: boolean;
+  pageRender?: boolean;
 }
 
 export interface TextContainerStyleProps {
@@ -70,18 +73,31 @@ export interface TextContainerStyleProps {
 export interface ImageformProps {
   indexMatch: boolean;
   imageSrc: string;
+  pageIndex?: number;
+  pageRender?: boolean;
 }
 
 export interface NumberformProps {
   indexMatch: boolean;
   number: string;
+  pageIndex?: number;
+  pageRender?: boolean;
 }
 
 export interface NumberOrderStyleProps {
   isMatch: boolean;
+  animationOn?: boolean;
 }
 
 /*---------------TextAndImages---------------*/
+
+/*-------------ProjectPageStyle--------------*/
+
+export interface ProjectPageStyleProps {
+  pageRender: boolean;
+}
+
+/*-------------ProjectPageStyle--------------*/
 
 /*--------------------All--------------------*/
 

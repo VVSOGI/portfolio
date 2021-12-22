@@ -1,0 +1,1 @@
+export const PAGE_BUTTON_CLICK = "PAGE_BUTTON_CLICK";

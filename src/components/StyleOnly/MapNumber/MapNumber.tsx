@@ -12,20 +12,26 @@ const MapNumberContainer = styled.div<NumberOrderStyleProps>`
   font-family: Impact, sans-serif;
   text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.575);
   transform: ${(props) => {
-    return props.isMatch ? `translateX(0%)` : `translateX(100%)`;
+    return props.isMatch || props.animationOn === false
+      ? `translateX(0%)`
+      : `translateX(100%)`;
   }};
   transition: 0.5s;
   transition-delay: ${(props) => {
-    return props.isMatch ? `1.5s` : `0s`;
+    return props.isMatch || props.animationOn === false ? `1.5s` : `0s`;
   }};
   opacity: ${(props) => {
-    return props.isMatch ? `1` : `0`;
-  }}; ;
+    return props.isMatch || props.animationOn === false ? `1` : `0`;
+  }};
+  z-index: 2;
 `;
 
 const MapNumber: React.FC<NumberformProps> = (props) => {
   return (
-    <MapNumberContainer isMatch={props.indexMatch}>
+    <MapNumberContainer
+      animationOn={props.pageIndex === 0 ? false : true}
+      isMatch={props.indexMatch}
+    >
       {props.number}
     </MapNumberContainer>
   );

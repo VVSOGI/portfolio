@@ -35,6 +35,7 @@ const About: React.FC<AllComponentProps> = (props) => {
         headText={aboutObject.headText}
         summaryText={aboutObject.summaryText}
         indexMatch={isIndexMatch}
+        pageIndex={props.index}
         position={"25%"}
       />
       <Imageform indexMatch={isIndexMatch} imageSrc={imageSource} />
