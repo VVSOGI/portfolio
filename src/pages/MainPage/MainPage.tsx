@@ -64,13 +64,13 @@ const MainPage: React.FC<any> = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    console.log(props);
     setIsLoading(false);
   }, [setMapIndex]);
 
   useEffect(() => {
     setMapIndex(1);
     /* Fullpage.js */
-    console.log(props);
 
     $((): void => {
       $("#fullpage").fullpage({
