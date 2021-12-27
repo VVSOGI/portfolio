@@ -8,6 +8,7 @@ import {
 } from "./styles";
 import { connect } from "react-redux";
 import { pageChange } from "../../../redux/actions";
+import { Link } from "react-router-dom";
 
 const Textform: React.FC<TextformProps> = (props: any) => {
   const handleButton = () => {
@@ -32,13 +33,33 @@ const Textform: React.FC<TextformProps> = (props: any) => {
       >
         {props.summaryText}
       </SummaryText>
-      <ComingButton
-        animationOn={props.pageIndex === 0 ? false : true}
-        onClick={() => handleButton()}
-        isMatch={props.indexMatch}
-      >
-        <span>More Details.</span>
-      </ComingButton>
+      {props.pageIndex === 2 ? (
+        <Link to={"project"}>
+          <ComingButton
+            animationOn={props.pageIndex === 0 ? false : true}
+            onClick={() => handleButton()}
+            isMatch={props.indexMatch}
+          >
+            {props.pageIndex === 0 ? (
+              <span>Visit Site</span>
+            ) : (
+              <span>More Details.</span>
+            )}
+          </ComingButton>
+        </Link>
+      ) : (
+        <ComingButton
+          animationOn={props.pageIndex === 0 ? false : true}
+          onClick={() => handleButton()}
+          isMatch={props.indexMatch}
+        >
+          {props.pageIndex === 0 ? (
+            <span>Visit Site</span>
+          ) : (
+            <span>More Details.</span>
+          )}
+        </ComingButton>
+      )}
     </TextComingContainer>
   );
 };

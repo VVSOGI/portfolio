@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Imageform from "../../components/Forms/Imageform/Imageform";
 import Textform from "../../components/Forms/Textform/Textform";
+import Nav from "../../components/Nav/Nav";
 import BackLight from "../../components/StyleOnly/BackLight/BackLight";
 import MapNumber from "../../components/StyleOnly/MapNumber/MapNumber";
 import { ProjectPageStyleProps } from "../../types/types";
+import Concept from "./components/Concept/Concept";
+import Development from "./components/Development/Development";
+import Summary from "./components/Summary/Summary";
 
 const ProjectTotalContainer = styled.div`
   height: 400vh;
@@ -12,17 +16,10 @@ const ProjectTotalContainer = styled.div`
   background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 65%);
   overflow-x: hidden;
   .one {
-    z-index: 20;
+    z-index: 1;
     height: 100vh;
     overflow: hidden;
-
     position: relative;
-  }
-  .test {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    z-index: 0;
   }
 `;
 
@@ -41,25 +38,14 @@ const BackgroundGrad = styled.div<ProjectPageStyleProps>`
   transition-timing-function: cubic-bezier(0.74, 0.22, 0.26, 1.01); //
 `;
 
-const Test = styled.div<ProjectPageStyleProps>`
-  /* position: absolute;
-  width: ${(props) => {
-    return props.pageRender ? "60%" : "0%";
-  }};
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #000000;
-  transition: 1s; */
-  z-index: 0;
-`;
+const Test = styled.div<ProjectPageStyleProps>``;
 
 const ProjectPage = () => {
   const [isRender, setIsRender] = useState<boolean>(false);
   useEffect(() => {
     setTimeout(() => {
       setIsRender(true);
-    }, 1000);
+    }, 50);
   }, []);
 
   const ProjectIndex = 2;
@@ -71,6 +57,8 @@ const ProjectPage = () => {
 
   return (
     <ProjectTotalContainer>
+      <Nav />
+
       <div className="one">
         <BackgroundGrad pageRender={isRender} />
         <Textform
@@ -94,8 +82,14 @@ const ProjectPage = () => {
       </div>
       <div className="test">
         <Test pageRender={isRender} />
-        <BackLight />
+        <BackLight animationOff={true} />
       </div>
+
+      {/* 구성 */}
+      <Summary />
+      <Concept />
+      <Development />
+      {/* 구성 */}
     </ProjectTotalContainer>
   );
 };

@@ -5,18 +5,16 @@ import {
 } from "../../../types/types";
 
 export const TextComingContainer = styled.div<TextContainerStyleProps>`
-  position: absolute;
-  left: 0%;
-  top: ${(props) => {
-    return props.position ? `${props.position}` : "20%";
-  }};
-  margin-left: 9.5%;
+  position: relative;
   width: 45%;
-  overflow: hidden;
+  margin-left: 9.5%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   color: #fff;
   z-index: 5;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 `;
 
 export const HeadText = styled.pre<TextAndImageStyleProps>`
@@ -51,7 +49,7 @@ export const SummaryText = styled.pre<TextAndImageStyleProps>`
 
 export const ComingButton = styled.div<TextAndImageStyleProps>`
   background-color: #5b95e0;
-  width: 200px;
+  width: 15em;
   height: 3em;
   display: flex;
   justify-content: center;
@@ -68,6 +66,7 @@ export const ComingButton = styled.div<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch || props.animationOn === false ? `2s` : `0s`;
   }};
+  font-size: 18px;
   span {
     position: relative;
     ::before {

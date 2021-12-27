@@ -15,24 +15,30 @@ const SvgTotalContainer = styled.svg<BackLightStyleProps>`
   right: ${(props) => {
     return props.mosPos ? `${50 - props.mosPos[0]}px` : "50px";
   }};
-  transform: scale(2);
+  transform: scale(1.5);
   transition: 1s;
 `;
 
-const BackLight = () => {
+interface BackLightIsAnimation {
+  animationOff?: boolean;
+}
+
+const BackLight: React.FC<BackLightIsAnimation> = (props) => {
   const [mosPos, setMosPos] = useState<number[]>([0, 0]);
 
   let timer: any;
   useEffect(() => {
-    window.addEventListener("mousemove", (e) => {
-      if (!timer) {
-        let test = Mousemove(e);
-        setMosPos(test);
-        timer = setTimeout(() => {
-          timer = null;
-        }, 50);
-      }
-    });
+    if (!props.animationOff) {
+      window.addEventListener("mousemove", (e) => {
+        if (!timer) {
+          let test = Mousemove(e);
+          setMosPos(test);
+          timer = setTimeout(() => {
+            timer = null;
+          }, 50);
+        }
+      });
+    }
   }, []);
 
   return (

@@ -1,21 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from "react";
-import { LoadingStyleProps } from "./types/types";
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import { LoadingStyleProps } from "../../types/types";
 import styled from "styled-components";
-import Nav from "./components/Nav/Nav";
-import Top from "./components/Sections/Top/Top";
-import Project from "./components/Sections/Project/Project";
-import About from "./components/Sections/About/About";
-import Bottom from "./components/Sections/Bottom/Bottom";
-import BackLight from "./components/StyleOnly/BackLight/BackLight";
 import $ from "jquery";
 import "fullpage.js/vendors/scrolloverflow";
 import "fullpage.js";
 import "fullpage.js/dist/jquery.fullpage.min.css";
-import { Route, Routes } from "react-router-dom";
-import ProjectPage from "./pages/ProjectPage/ProjectPage";
-import { connect } from "react-redux";
+import Nav from "../../components/Nav/Nav";
+import Top from "../../components/Sections/Top/Top";
+import Project from "../../components/Sections/Project/Project";
+import About from "../../components/Sections/About/About";
+import Bottom from "../../components/Sections/Bottom/Bottom";
+import BackLight from "../../components/StyleOnly/BackLight/BackLight";
 
 const AppTotalContainer = styled.div`
   height: 400vh;
@@ -64,10 +59,9 @@ const FirstLoadingGround = styled.div<LoadingStyleProps>`
   transition-timing-function: cubic-bezier(0.48, 0.3, 0.34, 1.02);
 `;
 
-const App = (props: any) => {
+const MainPage: React.FC<any> = (props) => {
   const [mapIndex, setMapIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const totalRef = useRef<any>(null);
 
   useEffect(() => {
     setIsLoading(false);
@@ -93,37 +87,22 @@ const App = (props: any) => {
     });
     /* Fullpage.js */
   }, []);
-
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <AppTotalContainer>
-            <Nav />
-            <AppMeaningfulSection id="fullpage" ref={totalRef}>
-              <Top index={mapIndex} />
-              <Project index={mapIndex} />
-              <About index={mapIndex} />
-              <Bottom index={mapIndex} />
-            </AppMeaningfulSection>
-            <AppMeaningfulnessSection>
-              <BackgroundGrad />
-              <BackLight />
-            </AppMeaningfulnessSection>
-            <FirstLoadingGround loading={isLoading ? "1" : "0"} />
-          </AppTotalContainer>
-        }
-      />
-      <Route path="/project" element={<ProjectPage />} />
-    </Routes>
+    <AppTotalContainer>
+      <Nav />
+      <AppMeaningfulSection id="fullpage">
+        <Top index={mapIndex} />
+        <Project index={mapIndex} />
+        <About index={mapIndex} />
+        <Bottom index={mapIndex} />
+      </AppMeaningfulSection>
+      <AppMeaningfulnessSection>
+        <BackgroundGrad />
+        <BackLight />
+      </AppMeaningfulnessSection>
+      <FirstLoadingGround loading={isLoading ? "1" : "0"} />
+    </AppTotalContainer>
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    page: state.pageReducer,
-  };
-};
-
-export default connect(mapStateToProps, null)(App);
+export default MainPage;
