@@ -14,6 +14,7 @@ const SummaryContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +24,7 @@ const ImageContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
+  z-index: 1;
   position: relative;
   display: flex;
   justify-content: center;
@@ -33,7 +35,7 @@ const TextContainer = styled.div`
 
 const Summary = () => {
   return (
-    <SummaryContainer>
+    <SummaryContainer className="summary">
       <ImageContainer>
         <img src="/images/imac2.png" alt="" />
       </ImageContainer>

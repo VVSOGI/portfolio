@@ -58,12 +58,16 @@ export interface TextformProps {
   summaryText: string;
   position?: string;
   pageIndex?: number;
+  page?: {
+    isPageMove: boolean;
+  };
 }
 
 export interface TextAndImageStyleProps {
   isMatch: boolean;
   animationOn?: boolean;
   pageRender?: boolean;
+  pageChange?: boolean;
 }
 
 export interface TextContainerStyleProps {
@@ -75,6 +79,13 @@ export interface ImageformProps {
   imageSrc: string;
   pageIndex?: number;
   pageRender?: boolean;
+  page?: {
+    isPageMove: boolean;
+  };
+}
+
+export interface ImgStyleProps {
+  pageChange: boolean;
 }
 
 export interface NumberformProps {

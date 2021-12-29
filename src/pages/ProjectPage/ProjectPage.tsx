@@ -1,51 +1,54 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+
 import Imageform from "../../components/Forms/Imageform/Imageform";
 import Textform from "../../components/Forms/Textform/Textform";
 import Nav from "../../components/Nav/Nav";
-import BackLight from "../../components/StyleOnly/BackLight/BackLight";
+import Basic from "../../components/StyleOnly/BackLight/Basic";
 import MapNumber from "../../components/StyleOnly/MapNumber/MapNumber";
-import { ProjectPageStyleProps } from "../../types/types";
 import Concept from "./components/Concept/Concept";
 import Development from "./components/Development/Development";
 import Summary from "./components/Summary/Summary";
 
-const ProjectTotalContainer = styled.div`
-  height: 400vh;
-  transition: 1s;
-  background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 65%);
-  overflow-x: hidden;
-  .one {
-    z-index: 1;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-  }
-`;
+import { connect } from "react-redux";
+import { pageChange, scrollMoving } from "../../redux/actions";
 
-const BackgroundGrad = styled.div<ProjectPageStyleProps>`
-  position: absolute;
-  top: 0;
-  left: ${(props) => {
-    return props.pageRender ? "-60%" : "-84.5%";
-  }};
-  width: 100%;
-  height: 100vh;
-  transform: skew(0deg);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #000311 70%);
-  z-index: 0;
-  transition: 1s;
-  transition-timing-function: cubic-bezier(0.74, 0.22, 0.26, 1.01); //
-`;
+import { useLocation } from "react-router";
 
-const Test = styled.div<ProjectPageStyleProps>``;
+import {
+  ProjectTotalContainer,
+  ProjectRenderContainer,
+  BackgroundGrad,
+} from "./styles";
 
-const ProjectPage = () => {
+const ProjectPage: React.FC = (props: any) => {
   const [isRender, setIsRender] = useState<boolean>(false);
+  const { key } = useLocation();
   useEffect(() => {
-    setTimeout(() => {
-      setIsRender(true);
-    }, 50);
+    setIsRender(true);
+    props.pageChange();
+
+    let check: boolean;
+    const localKey = localStorage.getItem("key");
+    if (localKey !== undefined && key === localKey) {
+      localStorage.removeItem("key");
+      window.location.reload();
+    } else {
+      localStorage.setItem("key", key);
+    }
+
+    window.addEventListener("scroll", () => {
+      let target = document.querySelector(".summary")?.getClientRects();
+      if (target) {
+        let targetPos = target[0].y - 40;
+        if (targetPos < 0 && !check) {
+          props.scrollTrue();
+          check = true;
+        } else if (targetPos > 0 && check) {
+          props.scrollFalse();
+          check = false;
+        }
+      }
+    });
   }, []);
 
   const ProjectIndex = 2;
@@ -56,10 +59,10 @@ const ProjectPage = () => {
   const imageSource: string = "/images/bobpago.png";
 
   return (
-    <ProjectTotalContainer>
+    <ProjectTotalContainer id="fullpage2">
       <Nav />
 
-      <div className="one">
+      <ProjectRenderContainer>
         <BackgroundGrad pageRender={isRender} />
         <Textform
           headText={projectObject.headText}
@@ -79,19 +82,34 @@ const ProjectPage = () => {
           number={`0${ProjectIndex - 1}`}
           pageRender={isRender}
         />
-      </div>
-      <div className="test">
-        <Test pageRender={isRender} />
-        <BackLight animationOff={true} />
-      </div>
+      </ProjectRenderContainer>
+
+      <Basic />
 
       {/* 구성 */}
+
       <Summary />
       <Concept />
       <Development />
+
       {/* 구성 */}
     </ProjectTotalContainer>
   );
 };
 
-export default ProjectPage;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    scrollTrue: () => dispatch(scrollMoving(true)),
+    scrollFalse: () => dispatch(scrollMoving(false)),
+    pageChange: () => dispatch(pageChange(true)),
+  };
+};
+
+const mapStateToProps = (state: any) => {
+  return {
+    page: state.pageReducer,
+    scroll: state.scrollReducer,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);

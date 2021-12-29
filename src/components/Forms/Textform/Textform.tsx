@@ -1,18 +1,30 @@
-import { TextformProps } from "../../../types/types";
+import { TextformProps } from "../../../pages/MainPage/types/types";
 import {
   TextComingContainer,
   HeadText,
   SummaryText,
   ComingButton,
   ComingLine,
+  LinkButton,
 } from "./styles";
 import { connect } from "react-redux";
 import { pageChange } from "../../../redux/actions";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+
+import $ from "jquery";
 
 const Textform: React.FC<TextformProps> = (props: any) => {
+  console.log(props);
+
+  const history = useNavigate();
   const handleButton = () => {
-    props.pageChange();
+    if (props.pageIndex === 2) {
+      $.fn.fullpage.destroy("all");
+      history("project");
+    } else if (props.pageIndex === 3) {
+      $.fn.fullpage.destroy("all");
+      history("about");
+    }
   };
 
   return (
@@ -24,6 +36,7 @@ const Textform: React.FC<TextformProps> = (props: any) => {
         {props.headText}
       </HeadText>
       <ComingLine
+        pageChange={props.page.isPageMove}
         animationOn={props.pageIndex === 0 ? false : true}
         isMatch={props.indexMatch}
       />
@@ -33,33 +46,20 @@ const Textform: React.FC<TextformProps> = (props: any) => {
       >
         {props.summaryText}
       </SummaryText>
-      {props.pageIndex === 2 ? (
-        <Link to={"project"}>
-          <ComingButton
-            animationOn={props.pageIndex === 0 ? false : true}
-            onClick={() => handleButton()}
-            isMatch={props.indexMatch}
-          >
-            {props.pageIndex === 0 ? (
-              <span>Visit Site</span>
-            ) : (
-              <span>More Details.</span>
-            )}
-          </ComingButton>
-        </Link>
-      ) : (
-        <ComingButton
-          animationOn={props.pageIndex === 0 ? false : true}
-          onClick={() => handleButton()}
-          isMatch={props.indexMatch}
-        >
-          {props.pageIndex === 0 ? (
-            <span>Visit Site</span>
-          ) : (
-            <span>More Details.</span>
-          )}
-        </ComingButton>
-      )}
+      <ComingButton
+        pageChange={props.page.isPageMove}
+        animationOn={props.pageIndex === 0 ? false : true}
+        onClick={() => handleButton()}
+        isMatch={props.indexMatch}
+      >
+        {props.pageIndex === 0 ? (
+          <LinkButton href="https://www.bobpago.com/" target="_blank">
+            Visit Site
+          </LinkButton>
+        ) : (
+          <span>More Details.</span>
+        )}
+      </ComingButton>
     </TextComingContainer>
   );
 };

@@ -38,13 +38,13 @@ export const EarthImage = styled.img<TopStyleProps>`
 `;
 
 export const PortfolioText = styled.div<TopStyleProps>`
-  font-size: 64px;
+  font-size: 130px;
   position: absolute;
-  right: ${(props) => {
-    return props.mosPos?.length ? `${230 - props.mosPos[0] * 0.4}px` : "230px";
+  left: ${(props) => {
+    return props.mosPos?.length ? `${0 - props.mosPos[0] * 0.4}px` : "230px";
   }};
   top: ${(props) => {
-    return props.mosPos?.length ? `${340 + props.mosPos[1] * 0.4}px` : "340px";
+    return props.mosPos?.length ? `${0 + props.mosPos[1] * 0.4}px` : "340px";
   }};
   z-index: 3;
   font-weight: 600;
@@ -53,7 +53,7 @@ export const PortfolioText = styled.div<TopStyleProps>`
   transform: ${(props) => {
     return props.componentIndex === props.propsIndex
       ? "translateX(0%)"
-      : "translateX(100%)";
+      : "translateX(-100%)";
   }};
   opacity: ${(props) => {
     return props.componentIndex === props.propsIndex ? "1" : "0";
@@ -95,6 +95,7 @@ export const NameText = styled.div<TopStyleProps>`
     return props.componentIndex === props.propsIndex ? "0.7s" : "0s";
   }};
   text-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
+  opacity: 0;
 `;
 
 export const FrontendText = styled.div<TopStyleProps>`
@@ -102,7 +103,7 @@ export const FrontendText = styled.div<TopStyleProps>`
   color: #fff;
   left: 0.2%;
   top: 42%;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 400;
   text-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
   transform: ${(props) => {

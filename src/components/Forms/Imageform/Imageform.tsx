@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { ImageformProps, TextAndImageStyleProps } from "../../../types/types";
+import {
+  ImageformProps,
+  TextAndImageStyleProps,
+  ImgStyleProps,
+} from "../../../pages/MainPage/types/types";
+import { connect } from "react-redux";
 
 const ImageTotalContianer = styled.div<TextAndImageStyleProps>`
   position: absolute;
@@ -87,16 +92,19 @@ const SudoContainer = styled.div<TextAndImageStyleProps>`
   }
 `;
 
-const Image = styled.img`
+const Image = styled.img<ImgStyleProps>`
   position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* border-radius: 10px; */
   transition: 1s;
-  cursor: pointer;
+  cursor: ${(props) => {
+    return props.pageChange ? "default" : "cursor";
+  }};
   :hover {
-    transform: scale(1.1);
+    transform: ${(props) => {
+      return props.pageChange ? "scale(1)" : "scale(1.1)";
+    }};
   }
 `;
 
@@ -107,7 +115,10 @@ const Imageform: React.FC<ImageformProps> = (props) => {
       pageRender={props.pageRender}
       isMatch={props.indexMatch}
     >
-      <Image src={props.imageSrc} />
+      <Image
+        src={props.imageSrc}
+        pageChange={props.page ? props.page.isPageMove : false}
+      />
       <SudoContainer
         animationOn={props.pageIndex === 0 ? false : true}
         isMatch={props.indexMatch}
@@ -116,4 +127,10 @@ const Imageform: React.FC<ImageformProps> = (props) => {
   );
 };
 
-export default Imageform;
+const mapStateToProps = (state: any) => {
+  return {
+    page: state.pageReducer,
+  };
+};
+
+export default connect(mapStateToProps, null)(Imageform);

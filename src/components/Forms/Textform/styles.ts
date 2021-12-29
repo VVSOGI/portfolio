@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   TextAndImageStyleProps,
   TextContainerStyleProps,
-} from "../../../types/types";
+} from "../../../pages/MainPage/types/types";
 
 export const TextComingContainer = styled.div<TextContainerStyleProps>`
   position: relative;
@@ -46,9 +46,11 @@ export const SummaryText = styled.pre<TextAndImageStyleProps>`
     return props.isMatch || props.animationOn === false ? `1.5s` : `0s`;
   }};
 `;
-
+// #dd2553
 export const ComingButton = styled.div<TextAndImageStyleProps>`
-  background-color: #5b95e0;
+  background-color: ${(props) => {
+    return props.pageChange ? "#dd2553" : "#5b95e0";
+  }};
   width: 15em;
   height: 3em;
   display: flex;
@@ -64,6 +66,7 @@ export const ComingButton = styled.div<TextAndImageStyleProps>`
   }};
   transition: 1s;
   transition-delay: ${(props) => {
+    if (props.pageChange) return "0s";
     return props.isMatch || props.animationOn === false ? `2s` : `0s`;
   }};
   font-size: 18px;
@@ -88,10 +91,22 @@ export const ComingButton = styled.div<TextAndImageStyleProps>`
   }
 `;
 
+export const LinkButton = styled.a`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+`;
+
 export const ComingLine = styled.div<TextAndImageStyleProps>`
   width: 69%;
   height: 0.5%;
-  background-color: #5b95e0;
+  background-color: ${(props) => {
+    return props.pageChange ? "#dd2553" : "#5b95e0";
+  }};
   top: 30%;
   left: 0;
   transform: ${(props) => {
@@ -101,6 +116,7 @@ export const ComingLine = styled.div<TextAndImageStyleProps>`
   }};
   transition: 1s;
   transition-delay: ${(props) => {
+    if (props.pageChange) return "0s";
     return props.isMatch || props.animationOn === false ? `1.5s` : `0s`;
   }};
 `;

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-const NavTotalContainer = styled.div`
+interface NavStyleProps {
+  navChange: boolean;
+}
+
+const NavTotalContainer = styled.div<NavStyleProps>`
   width: 100%;
   padding: 1em 1.5em;
   position: fixed;
@@ -9,9 +14,12 @@ const NavTotalContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
-  color: #ffffff;
+  color: ${(props) => {
+    return props.navChange ? "#000" : "#fff";
+  }};
   font-size: 1.5rem;
   z-index: 10;
+  transition: 0.2s;
 `;
 
 const NavLeftContainer = styled.div`
@@ -29,9 +37,9 @@ const NavRightContainer = styled.div`
   }
 `;
 
-const Nav = () => {
+const Nav = (props: any) => {
   return (
-    <NavTotalContainer>
+    <NavTotalContainer navChange={props.scroll.navChange}>
       <NavLeftContainer>Wooseok Kim</NavLeftContainer>
       <NavRightContainer>
         <ul>
@@ -44,4 +52,10 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+const mapStateToProps = (state: any) => {
+  return {
+    scroll: state.scrollReducer,
+  };
+};
+
+export default connect(mapStateToProps, null)(Nav);

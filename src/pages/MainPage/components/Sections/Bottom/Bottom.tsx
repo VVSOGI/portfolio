@@ -4,8 +4,8 @@ import {
   AllComponentProps,
   TextAndImageStyleProps,
 } from "../../../types/types";
-import Imageform from "../../Forms/Imageform/Imageform";
-import MapNumber from "../../StyleOnly/MapNumber/MapNumber";
+import Imageform from "../../../../../components/Forms/Imageform/Imageform";
+import MapNumber from "../../../../../components/StyleOnly/MapNumber/MapNumber";
 import { Vimeo, Github } from "@styled-icons/entypo-social";
 
 const BottomTotalContainer = styled.div`

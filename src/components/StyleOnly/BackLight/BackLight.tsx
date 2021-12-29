@@ -10,102 +10,171 @@ interface BackLightStyleProps {
 const SvgTotalContainer = styled.svg<BackLightStyleProps>`
   position: fixed;
   top: ${(props) => {
-    return props.mosPos ? `${90 + props.mosPos[1]}px` : "90px";
+    return props.mosPos
+      ? `${0 + props.mosPos[1]}px`
+      : `${90 + props.mosPos[1]}px`;
   }};
   right: ${(props) => {
-    return props.mosPos ? `${50 - props.mosPos[0]}px` : "50px";
+    return props.mosPos
+      ? `${-450 - props.mosPos[0]}px`
+      : `${50 - props.mosPos[0]}px`;
   }};
-  transform: scale(1.5);
+  transform: scale(1.1);
   transition: 1s;
+  overflow: visible;
 `;
 
 interface BackLightIsAnimation {
   animationOff?: boolean;
+  page?: any;
 }
 
 const BackLight: React.FC<BackLightIsAnimation> = (props) => {
-  const [mosPos, setMosPos] = useState<number[]>([0, 0]);
-
+  const [mosPos, setMosPos] = useState<number[]>([29.7, -29.7]);
   let timer: any;
+
   useEffect(() => {
-    if (!props.animationOff) {
-      window.addEventListener("mousemove", (e) => {
-        if (!timer) {
-          let test = Mousemove(e);
-          setMosPos(test);
-          timer = setTimeout(() => {
-            timer = null;
-          }, 50);
-        }
-      });
-    }
+    window.addEventListener("mousemove", (e) => {
+      if (!timer) {
+        let test = Mousemove(e);
+        setMosPos(test);
+        console.log(test);
+
+        timer = setTimeout(() => {
+          timer = null;
+        }, 50);
+      }
+    });
   }, []);
 
   return (
     <SvgTotalContainer
       mosPos={mosPos}
       id="background"
-      width="581"
-      height="581"
-      viewBox="0 0 581 581"
+      width="100%"
+      height="100%"
+      viewBox="0 0 920 920"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle
-        cx="290.5"
-        cy="290.498"
-        r="145.25"
-        fill="#2f4868"
-        fill-opacity="0.4"
+      <circle cx="460" cy="460" r="710" fill="#e2ca43" fill-opacity="1" />
+      <circle cx="200" cy="200" r="100" fill="#b38a33" fill-opacity="1" />
+      <circle cx="10" cy="450" r="150" fill="#8d6d27" fill-opacity="1" />
+      <circle cx="300" cy="450" r="70" fill="#705f39" fill-opacity="1" />
+      <ellipse
+        cx="-327.323"
+        cy="208.303"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
       />
       <ellipse
-        cx="290.5"
-        cy="290.498"
-        rx="96.8334"
-        ry="96.8333"
-        fill="#2f4868"
-        fill-opacity="0.7"
+        cx="-276.969"
+        cy="325.416"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
       />
       <ellipse
-        cx="290.5"
-        cy="290.499"
-        rx="193.667"
-        ry="193.667"
-        fill="#2f4868"
-        fill-opacity="0.3"
+        cx="-360.246"
+        cy="239.235"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
       />
       <ellipse
-        cx="290.5"
-        cy="290.5"
-        rx="242.083"
-        ry="242.083"
-        fill="#2f4868"
-        fill-opacity="0.2"
+        cx="-294.046"
+        cy="503.587"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
       />
-      <circle
-        cx="290.5"
-        cy="290.5"
-        r="290.5"
-        fill="#2f4868"
-        fill-opacity="0.1"
+      <ellipse
+        cx="-308.254"
+        cy="590.736"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
       />
-      <ellipse cx="158.323" cy="128.303" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="107.969" cy="155.416" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="191.246" cy="69.235" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="75.0458" cy="333.587" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="99.2542" cy="420.736" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="130.241" cy="456.564" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="412.026" cy="470.121" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="389.754" cy="433.324" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="443.013" cy="387.813" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="420.741" cy="335.524" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="518.543" cy="272.583" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="392.659" cy="150.574" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="353.926" cy="80.855" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="463.347" cy="105.063" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="414.931" cy="50.8372" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="481.746" cy="310.348" rx="1.4" ry="1.4" fill="white" />
-      <ellipse cx="523.384" cy="382.972" rx="1.4" ry="1.4" fill="white" />
+
+      <ellipse
+        cx="-339.741"
+        cy="756.564"
+        rx="2.92083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-378.754"
+        cy="603.324"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-309.741"
+        cy="705.524"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-457.543"
+        cy="442.583"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-361.659"
+        cy="100.574"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-554.046"
+        cy="503.587"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-558.254"
+        cy="590.736"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+
+      <ellipse
+        cx="-489.741"
+        cy="756.564"
+        rx="2.92083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-528.754"
+        cy="603.324"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-557.543"
+        cy="202.583"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
+      <ellipse
+        cx="-551.659"
+        cy="100.574"
+        rx="2.42083"
+        ry="2.42081"
+        fill="white"
+      />
     </SvgTotalContainer>
   );
 };

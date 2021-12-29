@@ -4,12 +4,11 @@ const initalState = {
   isPageMove: false,
   page: 0,
 };
+
 export const pageReducer = (state = initalState, action: any) => {
   switch (action.type) {
     case PAGE_BUTTON_CLICK:
       state.isPageMove = action.payload;
-      console.log({ ...state });
-
       return { ...state };
     default:
       return state;

@@ -24,8 +24,8 @@ export const Mousemove = (e: any) => {
   angleX = maxX * 0.22;
   angleY = maxY * 0.22;
 
-  softX += (angleX - softX) * 0.9;
-  softY += (angleY - softY) * 0.9;
+  softX += (angleX - softX) * 0.4;
+  softY += (angleY - softY) * 0.4;
 
   return [softX, softY];
 };

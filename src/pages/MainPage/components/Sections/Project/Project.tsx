@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AllComponentProps } from "../../../types/types";
-import Imageform from "../../Forms/Imageform/Imageform";
-import MapNumber from "../../StyleOnly/MapNumber/MapNumber";
-import Textform from "../../Forms/Textform/Textform";
+import Imageform from "../../../../../components/Forms/Imageform/Imageform";
+import MapNumber from "../../../../../components/StyleOnly/MapNumber/MapNumber";
+import Textform from "../../../../../components/Forms/Textform/Textform";
 
 const ProjectTotalContainer = styled.div`
   height: 100vh;

@@ -4,19 +4,19 @@ import styled from "styled-components";
 const ConceptContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 250vh;
+  height: 100%;
   background-color: #fff;
   z-index: 1;
-`;
-
-const ImageContainer = styled.div`
   img {
+    z-index: 1;
+    height: 170vh;
     width: 100%;
     object-fit: cover;
   }
 `;
 
 const ContentContainer = styled.div`
+  z-index: 1;
   padding: 4em 12em;
   .dede {
     display: flex;
@@ -30,7 +30,22 @@ const ContentContainer = styled.div`
       }
     }
     h4 {
-      flex: 1.5;
+      flex: 1.3;
+    }
+  }
+  .tete {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5em;
+    h1 {
+      flex: 1;
+      span {
+        margin-right: 10%;
+        color: #fa4c4c;
+      }
+    }
+    h4 {
+      flex: 1.3;
     }
   }
 `;
@@ -81,9 +96,7 @@ const Concept = () => {
           </h4>
         </div>
       </ContentContainer>
-      <ImageContainer>
-        <img src="/images/slide.png" alt="" />
-      </ImageContainer>
+      <img src="/images/slide.png" alt="" />
     </ConceptContainer>
   );
 };
