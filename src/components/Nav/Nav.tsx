@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
@@ -42,12 +42,6 @@ const NavRightContainer = styled.div`
 `;
 
 const Nav = (props: any) => {
-  useEffect(() => {
-    if (props.scroll.aboutChange) {
-      console.log("true");
-    }
-  }, [props.scroll.aboutChange]);
-
   return (
     <NavTotalContainer
       aboutChange={props.scroll.aboutChange}

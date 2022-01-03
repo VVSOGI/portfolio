@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import Imageform from "../../components/Forms/Imageform/Imageform";
 import Textform from "../../components/Forms/Textform/Textform";
@@ -7,16 +8,20 @@ import Basic from "../../components/StyleOnly/BackLight/Basic";
 import MapNumber from "../../components/StyleOnly/MapNumber/MapNumber";
 
 import { connect } from "react-redux";
-import { aboutPageScroll } from "../../redux/actions";
-
+import {
+  aboutPageScroll,
+  pageIndexChange,
+  passionPageEnter,
+} from "../../redux/actions";
 import { useLocation } from "react-router";
 
-import styled from "styled-components";
-import { ProjectPageStyleProps } from "../MainPage/types/types";
 import Skill from "./components/Skill/Skill";
-import Graph from "./components/Passion/Passion";
+import Passion from "./components/Passion/Passion";
+
+import { ProjectPageStyleProps } from "../MainPage/types/types";
 
 import $ from "jquery";
+import Bottom from "./components/Bottom/Bottom";
 
 require("fullpage.js/vendors/scrolloverflow");
 require("fullpage.js");
@@ -24,7 +29,7 @@ require("fullpage.js/dist/jquery.fullpage.min.css");
 
 const AboutTotalContainer = styled.div`
   position: relative;
-  height: 300vh;
+  height: 400vh;
   transition: 1s;
   background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 65%);
   overflow-x: hidden;
@@ -80,6 +85,7 @@ const AboutPage: React.FC = (props: any) => {
       css3: true,
       easingcss3: "cubic-bezier(.74,.22,.26,1.01)",
       onLeave: (origin: object, destination: number, direction: string) => {
+        props.pageIndexChange(destination);
         if (destination === 2) {
           props.aboutPageScrollTrue();
         } else {
@@ -133,7 +139,8 @@ const AboutPage: React.FC = (props: any) => {
           />
         </ProjectRenderContainer>
         <Skill />
-        <Graph />
+        <Passion />
+        <Bottom scroll={{ bgColor: "#fff" }} />
       </AboutFullpage>
     </AboutTotalContainer>
   );
@@ -143,6 +150,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     aboutPageScrollTrue: () => dispatch(aboutPageScroll(true)),
     aboutPageScrollFalse: () => dispatch(aboutPageScroll(false)),
+    passionPageEnterTrue: () => dispatch(passionPageEnter(true)),
+    passionPageEnterFalse: () => dispatch(passionPageEnter(false)),
+    pageIndexChange: (index: number) => dispatch(pageIndexChange(index)),
   };
 };
 

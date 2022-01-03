@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { passionBgColorChange } from "../../../../redux/actions";
 import {
   SKillContainer,
   Text,
@@ -9,7 +10,13 @@ import {
   IntegratedContainer,
 } from "./styles";
 
-const Skill: React.FC = () => {
+import { connect } from "react-redux";
+
+interface SkillPropsType {
+  passionBgColorChange: (bgColor: string) => {};
+}
+
+const Skill: React.FC<SkillPropsType> = (props) => {
   const [selectIndex, setSelectIndex] = useState<number>(0);
   const [isMouseIn, setIsMouseIn] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<[number, boolean]>([0, false]);
@@ -23,8 +30,10 @@ const Skill: React.FC = () => {
   ];
 
   useEffect(() => {
+    console.log(props);
+
     const container = document.getElementById("skillSet");
-    const back = document.querySelector("#back");
+    const back = document.getElementById("back");
 
     container?.addEventListener("mousemove", (e) => {
       const cursor = document.querySelector<HTMLElement>(".cursor");
@@ -66,6 +75,7 @@ const Skill: React.FC = () => {
 
       item.addEventListener("click", () => {
         setIsActive([index + 1, true]);
+        props.passionBgColorChange(backgroundColor[index].backgroundColor);
       });
     });
   }, []);
@@ -103,4 +113,11 @@ const Skill: React.FC = () => {
   );
 };
 
-export default Skill;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    passionBgColorChange: (bgColor: string) =>
+      dispatch(passionBgColorChange(bgColor)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Skill);
