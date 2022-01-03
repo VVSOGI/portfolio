@@ -51,7 +51,6 @@ const ProjectPage: React.FC = (props: any) => {
     });
   }, []);
 
-  const ProjectIndex = 2;
   const projectObject = {
     headText: `FIND RECIPES \nBOBPAGO`,
     summaryText: "Enjoy the Recipe that Alphago AI recommends.",
@@ -79,7 +78,7 @@ const ProjectPage: React.FC = (props: any) => {
         <MapNumber
           pageIndex={0}
           indexMatch={false}
-          number={`0${ProjectIndex - 1}`}
+          number={"01"}
           pageRender={isRender}
         />
       </ProjectRenderContainer>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TopStyleProps, TopRockStyleProps } from "../../../types/types";
+import { TopStyleProps, TopRockStyleProps } from "../../types/types";
 
 export const TopTotalContainer = styled.div`
   height: 100vh;

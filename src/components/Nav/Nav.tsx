@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 interface NavStyleProps {
   navChange: boolean;
+  aboutChange: boolean;
 }
 
 const NavTotalContainer = styled.div<NavStyleProps>`
@@ -19,7 +20,10 @@ const NavTotalContainer = styled.div<NavStyleProps>`
   }};
   font-size: 1.5rem;
   z-index: 10;
-  transition: 0.2s;
+  transition: color 0.2s, top 1s;
+  top: ${(props) => {
+    return props.aboutChange ? "-7%" : "0%";
+  }};
 `;
 
 const NavLeftContainer = styled.div`
@@ -38,8 +42,17 @@ const NavRightContainer = styled.div`
 `;
 
 const Nav = (props: any) => {
+  useEffect(() => {
+    if (props.scroll.aboutChange) {
+      console.log("true");
+    }
+  }, [props.scroll.aboutChange]);
+
   return (
-    <NavTotalContainer navChange={props.scroll.navChange}>
+    <NavTotalContainer
+      aboutChange={props.scroll.aboutChange}
+      navChange={props.scroll.navChange}
+    >
       <NavLeftContainer>Wooseok Kim</NavLeftContainer>
       <NavRightContainer>
         <ul>

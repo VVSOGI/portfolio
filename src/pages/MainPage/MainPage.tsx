@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import $ from "jquery";
 
 import Nav from "../../components/Nav/Nav";
-import Top from "./components/Sections/Top/Top";
-import Project from "./components/Sections/Project/Project";
-import About from "./components/Sections/About/About";
-import Bottom from "./components/Sections/Bottom/Bottom";
+import Top from "./components/Top/Top";
+import Project from "./components/Project/Project";
+import About from "./components/About/About";
+import Bottom from "./components/Bottom/Bottom";
 import BackLight from "../../components/StyleOnly/BackLight/BackLight";
 
 import {
@@ -18,7 +18,7 @@ import {
 } from "./styles";
 
 import { connect } from "react-redux";
-import { pageChange } from "../../redux/actions";
+import { pageChange, pageIndexChange } from "../../redux/actions";
 import Spacecloud from "../../components/StyleOnly/Spacecloud/Spacecloud";
 
 require("fullpage.js/vendors/scrolloverflow");
@@ -48,8 +48,10 @@ const MainPage: React.FC<any> = (props) => {
       easingcss3: "cubic-bezier(.74,.22,.26,1.01)",
       onLeave: (origin: object, destination: number, direction: string) => {
         setMapIndex(destination);
+        props.pageIndexChange(destination);
       },
     });
+
     /* Fullpage.js */
   }, []);
   return (
@@ -63,8 +65,8 @@ const MainPage: React.FC<any> = (props) => {
       </AppMeaningfulSection>
       <AppMeaningfulnessSection>
         <BackgroundGrad />
-        <BackLight />
-        <Spacecloud />
+        <BackLight isLoading={isLoading} />
+        <Spacecloud isLoading={isLoading} />
       </AppMeaningfulnessSection>
       <FirstLoadingGround loading={isLoading ? "1" : "0"} />
     </AppTotalContainer>
@@ -74,6 +76,7 @@ const MainPage: React.FC<any> = (props) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     pageChange: () => dispatch(pageChange(false)),
+    pageIndexChange: (index: number) => dispatch(pageIndexChange(index)),
   };
 };
 

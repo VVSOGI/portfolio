@@ -28,7 +28,7 @@ interface BackLightIsAnimation {
 }
 
 const Basic: React.FC<BackLightIsAnimation> = (props) => {
-  const [mosPos, setMosPos] = useState<number[]>([29.7, -29.7]);
+  const mosPos = [29.7, -29.7];
 
   return (
     <SvgTotalContainer

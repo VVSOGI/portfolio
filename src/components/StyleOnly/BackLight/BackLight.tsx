@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Mousemove } from "../../../functions/Mousemove/Mousemove";
 
 interface BackLightStyleProps {
+  isLoading: boolean;
   mosPos: number[];
 }
 
@@ -19,17 +20,21 @@ const SvgTotalContainer = styled.svg<BackLightStyleProps>`
       ? `${-450 - props.mosPos[0]}px`
       : `${50 - props.mosPos[0]}px`;
   }};
-  transform: scale(1.1);
-  transition: 1s;
+  transform: scale(1.1)
+    ${(props) => {
+      return props.isLoading === false ? "translateX(0%)" : "translateX(60%)";
+    }};
+  transition: 2s;
   overflow: visible;
 `;
 
-interface BackLightIsAnimation {
+interface BackLightProps {
   animationOff?: boolean;
   page?: any;
+  isLoading: boolean;
 }
 
-const BackLight: React.FC<BackLightIsAnimation> = (props) => {
+const BackLight: React.FC<BackLightProps> = (props) => {
   const [mosPos, setMosPos] = useState<number[]>([29.7, -29.7]);
   let timer: any;
 
@@ -38,17 +43,16 @@ const BackLight: React.FC<BackLightIsAnimation> = (props) => {
       if (!timer) {
         let test = Mousemove(e);
         setMosPos(test);
-        console.log(test);
-
         timer = setTimeout(() => {
           timer = null;
-        }, 50);
+        }, 10);
       }
     });
   }, []);
 
   return (
     <SvgTotalContainer
+      isLoading={props.isLoading}
       mosPos={mosPos}
       id="background"
       width="100%"
@@ -64,8 +68,8 @@ const BackLight: React.FC<BackLightIsAnimation> = (props) => {
       <ellipse
         cx="-327.323"
         cy="208.303"
-        rx="2.42083"
-        ry="2.42081"
+        rx="1.42083"
+        ry="1.42081"
         fill="white"
       />
       <ellipse
@@ -78,22 +82,22 @@ const BackLight: React.FC<BackLightIsAnimation> = (props) => {
       <ellipse
         cx="-360.246"
         cy="239.235"
-        rx="2.42083"
-        ry="2.42081"
+        rx="1.42083"
+        ry="1.42081"
         fill="white"
       />
       <ellipse
         cx="-294.046"
         cy="503.587"
-        rx="2.42083"
-        ry="2.42081"
+        rx="3.42083"
+        ry="3.42081"
         fill="white"
       />
       <ellipse
         cx="-308.254"
         cy="590.736"
-        rx="2.42083"
-        ry="2.42081"
+        rx="1.42083"
+        ry="1.42081"
         fill="white"
       />
 
@@ -107,15 +111,15 @@ const BackLight: React.FC<BackLightIsAnimation> = (props) => {
       <ellipse
         cx="-378.754"
         cy="603.324"
-        rx="2.42083"
-        ry="2.42081"
+        rx="3.42083"
+        ry="3.42081"
         fill="white"
       />
       <ellipse
         cx="-309.741"
         cy="705.524"
-        rx="2.42083"
-        ry="2.42081"
+        rx="0.42083"
+        ry="0.42081"
         fill="white"
       />
       <ellipse
@@ -128,15 +132,15 @@ const BackLight: React.FC<BackLightIsAnimation> = (props) => {
       <ellipse
         cx="-361.659"
         cy="100.574"
-        rx="2.42083"
-        ry="2.42081"
+        rx="3.42083"
+        ry="3.42081"
         fill="white"
       />
       <ellipse
         cx="-554.046"
         cy="503.587"
-        rx="2.42083"
-        ry="2.42081"
+        rx="3.42083"
+        ry="3.42081"
         fill="white"
       />
       <ellipse

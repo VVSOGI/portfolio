@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { AllComponentProps } from "../../../types/types";
-import Imageform from "../../../../../components/Forms/Imageform/Imageform";
-import MapNumber from "../../../../../components/StyleOnly/MapNumber/MapNumber";
-import Textform from "../../../../../components/Forms/Textform/Textform";
+import { AllComponentProps } from "../../types/types";
+import Imageform from "../../../../components/Forms/Imageform/Imageform";
+import MapNumber from "../../../../components/StyleOnly/MapNumber/MapNumber";
+import Textform from "../../../../components/Forms/Textform/Textform";
 
 const AboutTotalContainer = styled.div`
   height: 100vh;
@@ -18,7 +18,7 @@ const About: React.FC<AllComponentProps> = (props) => {
   const aboutObject = {
     headText: `About Me`,
     summaryText:
-      "Love Development, Love Planning \nAlso Love Desing and Communicate",
+      "Love Development, Love Planning \nAlso Love Design and Communicate",
   };
   const imageSource: string = "/images/paintingme.png";
 

@@ -1,5 +1,3 @@
-import { MouseEvent } from "react";
-
 export const Mousemove = (e: any) => {
   let pageX = 0,
     pageY = 0,
@@ -24,8 +22,8 @@ export const Mousemove = (e: any) => {
   angleX = maxX * 0.22;
   angleY = maxY * 0.22;
 
-  softX += (angleX - softX) * 0.4;
-  softY += (angleY - softY) * 0.4;
+  softX += (angleX - softX) * 0.8;
+  softY += (angleY - softY) * 0.8;
 
   return [softX, softY];
 };

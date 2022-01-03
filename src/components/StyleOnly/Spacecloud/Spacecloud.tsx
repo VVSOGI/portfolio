@@ -1,17 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-const SvgContainer = styled.svg`
+const SvgContainer = styled.svg<SpacecloudProps>`
   position: fixed;
   bottom: -5%;
   left: 35%;
   /* z-index: 10; */
   overflow: visible;
+  transform: ${(props) => {
+    return props.isLoading === false ? "translateY(0%)" : "translateY(60%)";
+  }};
+  transition: 2.5s;
 `;
 
-const Spacecloud = () => {
+interface SpacecloudProps {
+  isLoading: boolean;
+}
+
+const Spacecloud: React.FC<SpacecloudProps> = (props) => {
   return (
     <SvgContainer
+      isLoading={props.isLoading}
       width="1440"
       height="301"
       viewBox="0 0 1440 301"

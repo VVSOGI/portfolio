@@ -14,8 +14,6 @@ import { useNavigate } from "react-router";
 import $ from "jquery";
 
 const Textform: React.FC<TextformProps> = (props: any) => {
-  console.log(props);
-
   const history = useNavigate();
   const handleButton = () => {
     if (props.pageIndex === 2) {
@@ -30,31 +28,43 @@ const Textform: React.FC<TextformProps> = (props: any) => {
   return (
     <TextComingContainer position={props.position ? props.position : null}>
       <HeadText
-        animationOn={props.pageIndex === 0 ? false : true}
+        animationOn={
+          props.pageIndex === 0 || props.pageIndex === 5 ? false : true
+        }
         isMatch={props.indexMatch}
       >
         {props.headText}
       </HeadText>
       <ComingLine
         pageChange={props.page.isPageMove}
-        animationOn={props.pageIndex === 0 ? false : true}
+        animationOn={
+          props.pageIndex === 0 || props.pageIndex === 5 ? false : true
+        }
         isMatch={props.indexMatch}
       />
       <SummaryText
-        animationOn={props.pageIndex === 0 ? false : true}
+        animationOn={
+          props.pageIndex === 0 || props.pageIndex === 5 ? false : true
+        }
         isMatch={props.indexMatch}
       >
         {props.summaryText}
       </SummaryText>
       <ComingButton
         pageChange={props.page.isPageMove}
-        animationOn={props.pageIndex === 0 ? false : true}
+        animationOn={
+          props.pageIndex === 0 || props.pageIndex === 5 ? false : true
+        }
         onClick={() => handleButton()}
         isMatch={props.indexMatch}
       >
         {props.pageIndex === 0 ? (
           <LinkButton href="https://www.bobpago.com/" target="_blank">
             Visit Site
+          </LinkButton>
+        ) : props.pageIndex === 5 ? (
+          <LinkButton href="https://github.com/VVSOGI" target="_blank">
+            Visit GitHub
           </LinkButton>
         ) : (
           <span>More Details.</span>

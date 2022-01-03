@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  AllComponentProps,
-  TextAndImageStyleProps,
-} from "../../../types/types";
-import Imageform from "../../../../../components/Forms/Imageform/Imageform";
-import MapNumber from "../../../../../components/StyleOnly/MapNumber/MapNumber";
+import { AllComponentProps, TextAndImageStyleProps } from "../../types/types";
+import Imageform from "../../../../components/Forms/Imageform/Imageform";
+import MapNumber from "../../../../components/StyleOnly/MapNumber/MapNumber";
 import { Vimeo, Github } from "@styled-icons/entypo-social";
 
 const BottomTotalContainer = styled.div`
@@ -16,9 +13,13 @@ const BottomTotalContainer = styled.div`
 `;
 
 const BottomTextForm = styled.div`
-  position: absolute;
+  position: relative;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   left: 0%;
-  top: 22%;
+  /* top: 22%; */
   margin-left: 9.5%;
   width: 70%;
   overflow: hidden;

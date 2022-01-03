@@ -67,7 +67,7 @@ export const ComingButton = styled.div<TextAndImageStyleProps>`
   transition: 1s;
   transition-delay: ${(props) => {
     if (props.pageChange) return "0s";
-    return props.isMatch || props.animationOn === false ? `2s` : `0s`;
+    return props.isMatch || props.animationOn === false ? `1s` : `0s`;
   }};
   font-size: 18px;
   span {

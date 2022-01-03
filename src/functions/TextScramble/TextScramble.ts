@@ -8,7 +8,7 @@ export class TextScramble {
 
   constructor(el: HTMLElement) {
     this.el = el;
-    this.chars = "!<>-_\\/[]{}—=+*^?#________";
+    this.chars = "!ㄱ<>r-_\\ㅇ/[]ㅅ김우석{}—=+*^?#________";
     this.update = this.update.bind(this);
   }
   setText(newText: string) {

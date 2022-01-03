@@ -81,6 +81,7 @@ export interface ImageformProps {
   pageRender?: boolean;
   page?: {
     isPageMove: boolean;
+    page: number;
   };
 }
 
