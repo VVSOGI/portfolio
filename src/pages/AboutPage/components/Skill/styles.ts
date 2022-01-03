@@ -30,90 +30,16 @@ export const Text = styled.div<SkillStylesProps>`
   z-index: 1;
 `;
 
-export const JavascriptContainer = styled.div<SkillStylesProps>`
+export const IntegratedContainer = styled.div<SkillStylesProps>`
   min-width: 0%;
-  background-color: #ffa600;
-  flex: ${(props) => {
-    if (props.active[0] !== 1 && props.active[1] === true) {
-      return "0";
-    }
-    return props.index === 1 ? "2" : "1";
+  background-color: ${(props) => {
+    return props.bgColor;
   }};
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 500;
-  transition: 1s;
-  position: relative;
-`;
-
-export const TypescriptContainer = styled.div<SkillStylesProps>`
-  min-width: 0%;
-  background-color: #0099ff;
   flex: ${(props) => {
-    if (props.active[0] !== 2 && props.active[1] === true) {
+    if (props.active[0] !== props.index && props.active[1] === true) {
       return "0";
     }
-    return props.index === 2 ? "2" : "1";
-  }};
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 500;
-  transition: 1s;
-  position: relative;
-`;
-
-export const ReactContainer = styled.div<SkillStylesProps>`
-  min-width: 0%;
-  background-color: #1473df;
-  flex: ${(props) => {
-    if (props.active[0] !== 3 && props.active[1] === true) {
-      return "0";
-    }
-    return props.index === 3 ? "2" : "1";
-  }};
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 500;
-  transition: 1s;
-  position: relative;
-`;
-
-export const EtcContainer = styled.div<SkillStylesProps>`
-  min-width: 0%;
-  background-color: #b94239;
-  flex: ${(props) => {
-    if (props.active[0] !== 4 && props.active[1] === true) {
-      return "0";
-    }
-    return props.index === 4 ? "2" : "1";
-  }};
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 500;
-  transition: 1s;
-  position: relative;
-`;
-
-export const NextContainer = styled.div<SkillStylesProps>`
-  min-width: 0%;
-  background-color: #d6d6d6;
-  flex: ${(props) => {
-    if (props.active[0] !== 5 && props.active[1] === true) {
-      return "0";
-    }
-    return props.index === 5 ? "2" : "1";
+    return props.isMouseover === props.index ? "2" : "1";
   }};
   color: #fff;
   display: flex;

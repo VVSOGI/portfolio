@@ -14,7 +14,7 @@ import { useLocation } from "react-router";
 import styled from "styled-components";
 import { ProjectPageStyleProps } from "../MainPage/types/types";
 import Skill from "./components/Skill/Skill";
-import Graph from "./components/Graph/Graph";
+import Graph from "./components/Passion/Passion";
 
 import $ from "jquery";
 

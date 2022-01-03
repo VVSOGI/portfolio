@@ -2,21 +2,25 @@ import React, { useEffect, useState } from "react";
 import {
   SKillContainer,
   Text,
-  JavascriptContainer,
-  TypescriptContainer,
-  ReactContainer,
-  EtcContainer,
-  NextContainer,
   BackArrow,
   Cursor,
   HiddenText,
   SkillMainContainer,
+  IntegratedContainer,
 } from "./styles";
 
 const Skill: React.FC = () => {
-  const [index, setIndex] = useState<number>(0);
+  const [selectIndex, setSelectIndex] = useState<number>(0);
   const [isMouseIn, setIsMouseIn] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<[number, boolean]>([0, false]);
+
+  const backgroundColor = [
+    { backgroundColor: "#ffa600", text: "JAVASCRIPT", id: 1000 },
+    { backgroundColor: "#0099ff", text: "TYPESCRIPT", id: 2000 },
+    { backgroundColor: "#1473df", text: "REACT", id: 3000 },
+    { backgroundColor: "#b94239", text: "FIREBASE", id: 4000 },
+    { backgroundColor: "#d6d6d6", text: "STUDY", id: 5000 },
+  ];
 
   useEffect(() => {
     const container = document.getElementById("skillSet");
@@ -44,19 +48,19 @@ const Skill: React.FC = () => {
 
     back?.addEventListener("click", () => {
       setIsActive([0, false]);
-      setIndex(0);
+      setSelectIndex(0);
     });
 
     const text = document.querySelectorAll("#text");
 
     text.forEach((item, index) => {
       item.addEventListener("mouseover", (e) => {
-        setIndex(index + 1);
+        setSelectIndex(index + 1);
         setIsMouseIn(true);
       });
 
       item.addEventListener("mouseout", (e) => {
-        setIndex(0);
+        setSelectIndex(0);
         setIsMouseIn(false);
       });
 
@@ -71,51 +75,29 @@ const Skill: React.FC = () => {
       <SkillMainContainer className="test1" id="skillSet">
         <Cursor
           active={isActive}
-          index={index}
+          index={selectIndex}
           mouseIn={isMouseIn}
           className="cursor"
         />
-        <BackArrow id="back" active={isActive} index={index} />
-        <JavascriptContainer active={isActive} index={index}>
-          <Text active={isActive} index={index} id="text">
-            JAVASCRIPT
-          </Text>
-          <HiddenText index={1} active={isActive}>
-            공사중
-          </HiddenText>
-        </JavascriptContainer>
-        <TypescriptContainer active={isActive} index={index}>
-          <Text active={isActive} index={index} id="text">
-            TYPESCRIPT
-          </Text>
-          <HiddenText index={2} active={isActive}>
-            공사중
-          </HiddenText>
-        </TypescriptContainer>
-        <ReactContainer active={isActive} index={index}>
-          <Text active={isActive} index={index} id="text">
-            REACT
-          </Text>
-          <HiddenText index={3} active={isActive}>
-            공사중
-          </HiddenText>
-        </ReactContainer>
-        <EtcContainer active={isActive} index={index}>
-          <Text active={isActive} index={index} id="text">
-            ETC
-          </Text>
-          <HiddenText index={4} active={isActive}>
-            공사중
-          </HiddenText>
-        </EtcContainer>
-        <NextContainer active={isActive} index={index}>
-          <Text active={isActive} index={index} id="text">
-            NEXT ?
-          </Text>
-          <HiddenText index={5} active={isActive}>
-            공사중
-          </HiddenText>
-        </NextContainer>
+        <BackArrow id="back" active={isActive} index={selectIndex} />
+        {backgroundColor.map((item, i) => {
+          return (
+            <IntegratedContainer
+              bgColor={item.backgroundColor}
+              isMouseover={selectIndex}
+              active={isActive}
+              index={i + 1}
+              key={item.id}
+            >
+              <Text active={isActive} index={selectIndex} id="text">
+                {item.text}
+              </Text>
+              <HiddenText index={i + 1} active={isActive}>
+                공사중
+              </HiddenText>
+            </IntegratedContainer>
+          );
+        })}
       </SkillMainContainer>
     </SKillContainer>
   );

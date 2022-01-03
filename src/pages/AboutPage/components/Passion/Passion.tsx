@@ -6,24 +6,21 @@ const GraphContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
 `;
 
-const Test = styled.div`
+const GraphMainContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #ffffff;
 `;
 
 const Graph = () => {
   return (
     <GraphContainer className="section 3">
-      <Test>This is Graph.</Test>
+      <GraphMainContainer>This is Graph.</GraphMainContainer>
     </GraphContainer>
   );
 };
