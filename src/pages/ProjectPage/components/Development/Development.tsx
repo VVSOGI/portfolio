@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
+import $ from "jquery";
 
 const DevelopmentContainer = styled.div`
   position: relative;
@@ -54,10 +56,20 @@ const Back = styled.div`
 `;
 
 const Development = () => {
+  const history = useNavigate();
+  const handlePageBack = () => {
+    history("/");
+    $.fn.fullpage.destroy("all");
+  };
+
   return (
     <DevelopmentContainer>
       <ContentContainer>
-        <Title>
+        <Title
+          onClick={() => {
+            handlePageBack();
+          }}
+        >
           뒤로가기
           <Back></Back>
         </Title>

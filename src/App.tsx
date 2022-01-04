@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import MainPage from "./pages/MainPage/MainPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 
-const App = (props: any) => {
+const App = (props: { page?: object }) => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />

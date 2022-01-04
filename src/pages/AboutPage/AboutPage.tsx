@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
 import Imageform from "../../components/Forms/Imageform/Imageform";
 import Textform from "../../components/Forms/Textform/Textform";
@@ -8,71 +7,36 @@ import Basic from "../../components/StyleOnly/BackLight/Basic";
 import MapNumber from "../../components/StyleOnly/MapNumber/MapNumber";
 
 import { connect } from "react-redux";
-import {
-  aboutPageScroll,
-  pageIndexChange,
-  passionPageEnter,
-} from "../../redux/actions";
-import { useLocation } from "react-router";
+import { aboutPageScroll, pageIndexChange } from "../../redux/actions";
+import { useLocation, useNavigate } from "react-router";
 
 import Skill from "./components/Skill/Skill";
 import Passion from "./components/Passion/Passion";
 
-import { ProjectPageStyleProps } from "../MainPage/types/types";
-
 import $ from "jquery";
-import Bottom from "./components/Bottom/Bottom";
+import Bottom from "./components/AboutBottom/AboutBottom";
+
+import {
+  AboutTotalContainer,
+  AboutFullpage,
+  ProjectRenderContainer,
+  BackgroundGrad,
+  BackIconContainer,
+} from "./styles";
 
 require("fullpage.js/vendors/scrolloverflow");
 require("fullpage.js");
 require("fullpage.js/dist/jquery.fullpage.min.css");
 
-const AboutTotalContainer = styled.div`
-  position: relative;
-  height: 400vh;
-  transition: 1s;
-  background: linear-gradient(90deg, #000000 5%, rgb(13, 41, 70) 65%);
-  overflow-x: hidden;
-
-  #fullpage2 {
-    width: 100%;
-    position: relative;
-    height: 100vh;
-  }
-`;
-
-const AboutFullpage = styled.div`
-  width: 100%;
-  height: 100%;
-  /* position: relative; */
-  transition: 1s;
-`;
-
-const ProjectRenderContainer = styled.div`
-  z-index: 1;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-`;
-
-const BackgroundGrad = styled.div<ProjectPageStyleProps>`
-  position: absolute;
-  top: 0;
-  left: ${(props) => {
-    return props.pageRender ? "-60%" : "-84.5%";
-  }};
-  width: 100%;
-  height: 100vh;
-  transform: skew(0deg);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #000311 70%);
-  z-index: 0;
-  transition: 1s;
-  transition-timing-function: cubic-bezier(0.74, 0.22, 0.26, 1.01); //
-`;
-
 const AboutPage: React.FC = (props: any) => {
   const [isRender, setIsRender] = useState<boolean>(false);
   const { key } = useLocation();
+  const history = useNavigate();
+
+  const handlePageBack = () => {
+    history("/");
+    $.fn.fullpage.destroy("all");
+  };
 
   useEffect(() => {
     setIsRender(true);
@@ -112,12 +76,19 @@ const AboutPage: React.FC = (props: any) => {
 
   return (
     <AboutTotalContainer>
-      <div className="etc">
-        <Nav />
-        <Basic />
-      </div>
+      <Nav />
+      <Basic />
+
       <AboutFullpage id="fullpage2">
         <ProjectRenderContainer className="section 1">
+          <BackIconContainer
+            onClick={() => {
+              handlePageBack();
+            }}
+            pageRender={isRender}
+          >
+            <div className="line" />
+          </BackIconContainer>
           <BackgroundGrad pageRender={isRender} />
           <Textform
             headText={aboutObject.headText}
@@ -150,8 +121,6 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     aboutPageScrollTrue: () => dispatch(aboutPageScroll(true)),
     aboutPageScrollFalse: () => dispatch(aboutPageScroll(false)),
-    passionPageEnterTrue: () => dispatch(passionPageEnter(true)),
-    passionPageEnterFalse: () => dispatch(passionPageEnter(false)),
     pageIndexChange: (index: number) => dispatch(pageIndexChange(index)),
   };
 };

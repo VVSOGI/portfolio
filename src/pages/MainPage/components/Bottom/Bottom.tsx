@@ -57,6 +57,15 @@ const BottomLine = styled.div<TextAndImageStyleProps>`
 const BottomEtcContainer = styled.div<TextAndImageStyleProps>`
   display: flex;
   flex-direction: column;
+  a {
+    font-size: 28px;
+    color: #fff;
+    text-decoration: none;
+    :hover {
+      color: #ff6c6c;
+    }
+    transition: 0.3s;
+  }
   span {
     font-size: 28px;
   }
@@ -108,7 +117,7 @@ const Bottom: React.FC<AllComponentProps> = (props) => {
         <BottomTilteText isMatch={isIndexMatch}>Contact Me.</BottomTilteText>
         <BottomLine isMatch={isIndexMatch} />
         <BottomEtcContainer isMatch={isIndexMatch}>
-          <span>vvsogi@gmail.com</span>
+          <a href="mailto:vvsogi@gmail.com">vvsogi@gmail.com</a>
           <span>+82 10-2472-8825</span>
           <BottomIconContainer>
             <BottomLink href="https://velog.io/@vvsogi">

@@ -23,6 +23,7 @@ import {
 const ProjectPage: React.FC = (props: any) => {
   const [isRender, setIsRender] = useState<boolean>(false);
   const { key } = useLocation();
+
   useEffect(() => {
     setIsRender(true);
     props.pageChange();

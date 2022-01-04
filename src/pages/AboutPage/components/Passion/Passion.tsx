@@ -1,115 +1,25 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { PassionPropsType } from "../../types/types";
 import { connect } from "react-redux";
-
-const PassionContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
-
-const PassionMainContainer = styled.div<PassionStylesProps>`
-  width: 100%;
-  height: 105%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props) => {
-    return props.bgColor;
-  }};
-  overflow: hidden;
-`;
-
-const PassionBigText = styled.span<PassionStylesProps>`
-  font-size: 160px;
-  font-weight: 800;
-  position: absolute;
-  top: 10%;
-  left: ${(props) => {
-    return props.passionEnter ? props.pos + "%" : "-45%";
-  }}; // -45%
-  transition: 1s;
-  transition-delay: ${(props) => {
-    return props.passionEnter ? ".5s" : "0";
-  }};
-  color: ${(props) => {
-    return props.bgColor;
-  }};
-  writing-mode: vertical-rl;
-`;
-
-const PassionTextContainer = styled.div<PassionStylesProps>`
-  position: absolute;
-  right: ${(props) => {
-    return props.passionEnter ? "5%" : "-45%";
-  }};
-  top: 15%;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: 1s;
-  transition-delay: ${(props) => {
-    return props.passionEnter ? ".8s" : "0";
-  }};
-`;
-
-const PassionHeadText = styled.span`
-  margin-bottom: 1em;
-  font-size: 22px;
-  font-weight: 800;
-  span {
-    color: #eee;
-  }
-`;
-
-const PassionMainText = styled.div`
-  max-width: 90%;
-  font-size: 14px;
-  color: #222222;
-  font-weight: 500;
-  .emphasis {
-    font-size: 16px;
-    font-weight: 700;
-    color: #000;
-  }
-`;
-
-const PassionBelt = styled.div<PassionStylesProps>`
-  width: 100%;
-  height: 3%;
-  background-color: #8d2e27;
-  position: absolute;
-  bottom: ${(props) => {
-    return props.passionEnter ? "3.5%" : "-5%";
-  }};
-  transition: 1s;
-  transition-delay: ${(props) => {
-    return props.passionEnter ? ".8s" : "0";
-  }};
-`;
-
-interface PassionStylesProps {
-  bgColor?: string;
-  passionEnter?: boolean;
-  pos?: string;
-}
-
-interface PassionPropsType {
-  scroll?: { bgColor: string };
-  page?: { page: number };
-}
+import {
+  PassionContainer,
+  PassionMainContainer,
+  PassionBigText,
+  PassionTextContainer,
+  PassionHeadText,
+  PassionMainText,
+  PassionBelt,
+} from "./styles";
 
 const Passion: React.FC<PassionPropsType> = (props) => {
   const [isPageIndexSame, setIsPageIndexSame] = useState<boolean>(false);
   const backgroundColor = [
     { backgroundColor: "#1a2f66", position: "42", id: 10 },
-    { backgroundColor: "#015791", position: "35", id: 20 },
-    { backgroundColor: "#04438b", position: "28", id: 30 },
-    { backgroundColor: "#8d2e27", position: "21", id: 40 },
-    { backgroundColor: "#555555", position: "14", id: 50 },
-    { backgroundColor: "#424242", position: "7", id: 60 },
+    { backgroundColor: "#3140ca", position: "35", id: 20 },
+    { backgroundColor: "#237add", position: "28", id: 30 },
+    { backgroundColor: "#be3329", position: "21", id: 40 },
+    { backgroundColor: "#943220", position: "14", id: 50 },
+    { backgroundColor: "#662511", position: "7", id: 60 },
     { backgroundColor: "#000000", position: "0", id: 70 },
   ];
   const pageIndex = 3;

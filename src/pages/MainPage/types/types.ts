@@ -37,17 +37,6 @@ export interface TopStyleProps {
   isMouseMove?: boolean;
 }
 
-export interface TopRockStyleProps {
-  right: number;
-  top: number;
-  scale: string;
-  rotate: string;
-  componentIndex?: number;
-  propsIndex?: number;
-  mospos?: number[];
-  isMouseMove?: boolean;
-}
-
 /*--------------------Top--------------------*/
 
 /*---------------TextAndImages---------------*/
