@@ -23,4 +23,10 @@ export const MapNumberContainer = styled.div<NumberOrderStyleProps>`
     return props.isMatch || props.animationOn === false ? `1` : `0`;
   }};
   z-index: 2;
+  @media only screen and (max-width: 1024px) {
+    bottom: 0%;
+    font-size: 188px;
+  }
+  @media only screen and (max-width: 768px) {
+  }
 `;

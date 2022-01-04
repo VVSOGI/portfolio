@@ -24,6 +24,9 @@ export const BottomTextForm = styled.div`
   color: #fff;
   z-index: 5;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const BottomTilteText = styled.div<TextAndImageStyleProps>`
@@ -35,6 +38,15 @@ export const BottomTilteText = styled.div<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch ? `1.2s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    font-size: 100px;
+    transform: ${(props) => {
+      return props.isMatch ? `translateX(0%)` : `translateX(-100%)`;
+    }};
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 72px;
+  }
 `;
 
 export const BottomLine = styled.div<TextAndImageStyleProps>`
@@ -49,6 +61,9 @@ export const BottomLine = styled.div<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch ? `1.5s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    width: 60%;
+  }
 `;
 
 export const BottomEtcContainer = styled.div<TextAndImageStyleProps>`

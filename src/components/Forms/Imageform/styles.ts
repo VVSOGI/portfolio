@@ -54,6 +54,9 @@ export const ImageTotalContianer = styled.div<TextAndImageStyleProps>`
   }};
   overflow: hidden;
   z-index: 1;
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const SudoContainer = styled.div<TextAndImageStyleProps>`

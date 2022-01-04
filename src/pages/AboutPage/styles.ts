@@ -1,3 +1,4 @@
+import { BackgroundColor } from "@styled-icons/foundation";
 import styled from "styled-components";
 import { ProjectPageStyleProps } from "../MainPage/types/types";
 
@@ -41,6 +42,12 @@ export const BackgroundGrad = styled.div<ProjectPageStyleProps>`
   z-index: 0;
   transition: 1s;
   transition-timing-function: cubic-bezier(0.74, 0.22, 0.26, 1.01); //
+  @media only screen and (max-width: 1024px) {
+    background-color: #000;
+    left: ${(props) => {
+      return props.pageRender ? "0%" : "-84.5%";
+    }};
+  }
 `;
 
 export const BackIconContainer = styled.div<ProjectPageStyleProps>`

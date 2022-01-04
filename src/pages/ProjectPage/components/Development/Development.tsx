@@ -1,5 +1,4 @@
 import React from "react";
-import $ from "jquery";
 import { useNavigate } from "react-router";
 import { scrollMoving } from "../../../../redux/actions";
 import { connect } from "react-redux";
@@ -13,7 +12,6 @@ const Development: React.FC<DevelopmentPropsType> = (props) => {
   const history = useNavigate();
   const handlePageBack = () => {
     props.scrollFalse();
-    $.fn.fullpage.destroy("all");
     history("/");
   };
 

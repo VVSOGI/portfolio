@@ -18,26 +18,6 @@ export const NameTextContainer = styled.div`
   height: 100%;
 `;
 
-export const NameText = styled.div<TopStyleProps>`
-  width: 50%;
-  font-size: 100px;
-  font-weight: 500;
-  letter-spacing: 8px;
-  line-height: 1.1em;
-  color: #fff;
-  transform: ${(props) => {
-    return props.componentIndex === props.propsIndex
-      ? "translateX(0%)"
-      : "translateX(-100%)";
-  }};
-  transition: 1s;
-  transition-delay: ${(props) => {
-    return props.componentIndex === props.propsIndex ? "0.7s" : "0s";
-  }};
-  text-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
-  opacity: 0;
-`;
-
 export const FrontendText = styled.div<TopStyleProps>`
   position: absolute;
   color: #fff;
@@ -56,6 +36,12 @@ export const FrontendText = styled.div<TopStyleProps>`
     return props.componentIndex === props.propsIndex ? "1.2s" : "0s";
   }};
   background-color: transparent;
+  @media only screen and (max-width: 1024px) {
+    /* font-size: 20px; */
+  }
+  @media only screen and (max-width: 768px) {
+    /* font-size: 18px; */
+  }
 `;
 
 export const ScrolldownText = styled.div<TopStyleProps>`
@@ -83,5 +69,9 @@ export const ScrolldownText = styled.div<TopStyleProps>`
     position: absolute;
     bottom: -50%;
     left: 50%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
   }
 `;

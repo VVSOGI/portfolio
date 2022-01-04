@@ -30,6 +30,20 @@ export const Title = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 1024px) {
+    font-size: 24px;
+    :hover {
+      div {
+        left: -5%;
+        transition: 0.2s;
+        ::before {
+          transform: rotate(30deg);
+          top: 280%;
+          left: -2%;
+        }
+      }
+    }
+  }
 `;
 
 export const Back = styled.div`
@@ -49,5 +63,10 @@ export const Back = styled.div`
     background-color: #000;
     position: absolute;
     transition: 0.2s;
+  }
+  @media only screen and (max-width: 1024px) {
+    top: 100%;
+    transition: 0.2s;
+    left: 0%;
   }
 `;

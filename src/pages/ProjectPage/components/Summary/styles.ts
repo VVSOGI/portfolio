@@ -30,4 +30,10 @@ export const TextContainer = styled.div`
   font-size: 32px;
   font-weight: 700;
   margin-top: 1.5em;
+  @media only screen and (max-width: 1024px) {
+    font-size: 24px;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 18px;
+  }
 `;

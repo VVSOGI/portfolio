@@ -15,6 +15,9 @@ export const TextComingContainer = styled.div<TextContainerStyleProps>`
   color: #fff;
   z-index: 5;
   overflow: hidden;
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const HeadText = styled.pre<TextAndImageStyleProps>`
@@ -30,6 +33,10 @@ export const HeadText = styled.pre<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch || props.animationOn === false ? `1.2s` : `0s`;
   }};
+
+  @media only screen and (max-width: 768px) {
+    font-size: 84px;
+  }
 `;
 
 export const SummaryText = styled.pre<TextAndImageStyleProps>`
@@ -45,8 +52,13 @@ export const SummaryText = styled.pre<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch || props.animationOn === false ? `1.5s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    font-size: 20px;
+  }
+  @media only screen and (max-width: 768px) {
+  }
 `;
-// #dd2553
+
 export const ComingButton = styled.div<TextAndImageStyleProps>`
   background-color: ${(props) => {
     return props.pageChange ? "#dd2553" : "#5b95e0";
@@ -119,4 +131,7 @@ export const ComingLine = styled.div<TextAndImageStyleProps>`
     if (props.pageChange) return "0s";
     return props.isMatch || props.animationOn === false ? `1.5s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    width: 60%;
+  }
 `;

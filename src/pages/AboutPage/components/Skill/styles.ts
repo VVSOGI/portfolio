@@ -49,6 +49,10 @@ export const IntegratedContainer = styled.div<SkillStylesProps>`
   font-weight: 500;
   transition: 1s;
   position: relative;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  @media only screen and (max-width: 1024px) {
+    font-size: 14px;
+  }
 `;
 
 export const BackArrow = styled(ArrowBack)<SkillStylesProps>`

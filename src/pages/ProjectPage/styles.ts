@@ -27,5 +27,10 @@ export const BackgroundGrad = styled.div<ProjectPageStyleProps>`
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, #000311 70%);
   z-index: 0;
   transition: 1s;
-  transition-timing-function: cubic-bezier(0.74, 0.22, 0.26, 1.01); //
+  transition-timing-function: cubic-bezier(0.74, 0.22, 0.26, 1.01);
+  @media only screen and (max-width: 1024px) {
+    left: ${(props) => {
+      return props.pageRender ? "0%" : "-84.5%";
+    }};
+  }
 `;

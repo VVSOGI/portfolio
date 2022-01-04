@@ -26,6 +26,13 @@ export const PortfolioText = styled.div<TopStyleProps>`
       ? `${props.isMouseMove ? "0s" : "0.5s"}`
       : "0s";
   }};
+  @media only screen and (max-width: 1024px) {
+    font-size: 100px;
+    top: 5%;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 84px;
+  }
 `;
 
 interface ScrambleProps {

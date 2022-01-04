@@ -5,12 +5,15 @@ const SvgContainer = styled.svg<SpacecloudProps>`
   position: fixed;
   bottom: -5%;
   left: 35%;
-  /* z-index: 10; */
   overflow: visible;
   transform: ${(props) => {
     return props.isLoading === false ? "translateY(0%)" : "translateY(60%)";
   }};
   transition: 2.5s;
+
+  @media only screen and (max-width: 768px) {
+    bottom: 0%;
+  }
 `;
 
 interface SpacecloudProps {

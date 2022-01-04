@@ -5,7 +5,6 @@ import { AllComponentProps } from "../../types/types";
 import {
   TopTotalContainer,
   NameTextContainer,
-  NameText,
   FrontendText,
   ScrolldownText,
 } from "./styles";
@@ -17,9 +16,6 @@ const Top: React.FC<AllComponentProps> = (props) => {
     <TopTotalContainer id="top" className="section 1">
       <NameTextContainer>
         <Scramble topIndex={topIndex} index={props.index} />
-        <NameText componentIndex={topIndex} propsIndex={props.index}>
-          WOOSEOK KIM
-        </NameText>
         <FrontendText componentIndex={topIndex} propsIndex={props.index}>
           Frontend Developer / <br /> Clever communicator
         </FrontendText>

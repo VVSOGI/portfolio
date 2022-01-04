@@ -46,6 +46,9 @@ export const AboutBottomTilteText = styled.div<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch ? `1.2s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    font-size: 72px;
+  }
 `;
 
 export const AboutBottomLine = styled.div<TextAndImageStyleProps>`
@@ -60,6 +63,9 @@ export const AboutBottomLine = styled.div<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch ? `1.5s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    width: 70%;
+  }
 `;
 
 export const AboutBottomEtcContainer = styled.div<TextAndImageStyleProps>`
@@ -85,6 +91,14 @@ export const AboutBottomEtcContainer = styled.div<TextAndImageStyleProps>`
   transition-delay: ${(props) => {
     return props.isMatch ? `1.5s` : `0s`;
   }};
+  @media only screen and (max-width: 1024px) {
+    a {
+      font-size: 34px;
+    }
+    span {
+      font-size: 34px;
+    }
+  }
 `;
 
 export const AboutBottomIconContainer = styled.div`
@@ -141,6 +155,14 @@ export const AboutBottomBackIcon = styled.div<TextAndImageStyleProps>`
       left: 0;
       top: 40%;
       transform: rotate(-15deg);
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+    .line {
+      ::before {
+        top: 35%;
+      }
     }
   }
 `;

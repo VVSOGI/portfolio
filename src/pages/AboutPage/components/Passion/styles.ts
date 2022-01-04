@@ -36,6 +36,9 @@ export const PassionBigText = styled.span<PassionStylesProps>`
     return props.bgColor;
   }};
   writing-mode: vertical-rl;
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const PassionTextContainer = styled.div<PassionStylesProps>`
@@ -52,6 +55,15 @@ export const PassionTextContainer = styled.div<PassionStylesProps>`
   transition-delay: ${(props) => {
     return props.passionEnter ? ".8s" : "0";
   }};
+  @media only screen and (max-width: 1024px) {
+    position: relative;
+    align-items: flex-start;
+    width: 80%;
+    right: ${(props) => {
+      return props.passionEnter ? "0%" : "-45%";
+    }};
+    top: 0%;
+  }
 `;
 
 export const PassionHeadText = styled.span`
@@ -60,6 +72,9 @@ export const PassionHeadText = styled.span`
   font-weight: 800;
   span {
     color: #eee;
+  }
+  @media only screen and (max-width: 1024px) {
+    font-size: 24px;
   }
 `;
 

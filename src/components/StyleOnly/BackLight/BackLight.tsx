@@ -26,6 +26,17 @@ const SvgTotalContainer = styled.svg<BackLightStyleProps>`
     }};
   transition: 1.5s;
   overflow: visible;
+  @media only screen and (max-width: 1024px) {
+    transform: scale(1);
+  }
+  @media only screen and (max-width: 768px) {
+    transform: scale(0.8);
+    right: ${(props) => {
+      return props.mosPos
+        ? `${-350 - props.mosPos[0]}px`
+        : `${50 - props.mosPos[0]}px`;
+    }};
+  }
 `;
 
 interface BackLightProps {
