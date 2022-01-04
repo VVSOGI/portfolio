@@ -79,8 +79,6 @@ const NavNotionIcon = styled(Notion)`
 `;
 
 const Nav = (props: any) => {
-  console.log(props);
-
   return (
     <NavTotalContainer
       aboutChange={props.scroll.aboutChange}

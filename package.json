@@ -1,5 +1,4 @@
 {
-  "homepage": "https://vvsogi.github.io/vvsogiportfolio",
   "name": "portfolio2",
   "version": "0.1.0",
   "private": true,
@@ -37,6 +36,7 @@
     "build": "react-app-rewired build",
     "eject": "react-app-rewired eject",
     "test": "react-app-rewired test",
+    "predeploy": "react-app-rewired build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
