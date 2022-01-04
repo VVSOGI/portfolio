@@ -1,37 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const SummaryContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 110vh;
-  background-color: #fff;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const ImageContainer = styled.div`
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 80%;
-  }
-`;
-
-const TextContainer = styled.div`
-  z-index: 1;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  font-size: 32px;
-  font-weight: 700;
-  margin-top: 1.5em;
-`;
+import { SummaryContainer, ImageContainer, TextContainer } from "./styles";
 
 const Summary = () => {
   return (

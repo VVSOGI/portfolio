@@ -6,6 +6,10 @@ export interface SkillStylesProps {
   isMouseover?: number;
 }
 
+export interface SkillPropsType {
+  passionBgColorChange: (bgColor: string) => {};
+}
+
 // Skill Components
 
 export interface PassionStylesProps {

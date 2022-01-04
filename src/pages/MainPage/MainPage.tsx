@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 
 import $ from "jquery";
@@ -36,6 +37,12 @@ const MainPage: React.FC<any> = (props) => {
   useEffect(() => {
     setMapIndex(1);
     props.pageChange();
+
+    const localKey = localStorage.getItem("key");
+    if (localKey) {
+      localStorage.removeItem("key");
+      window.location.reload();
+    }
 
     /* Fullpage.js */
 

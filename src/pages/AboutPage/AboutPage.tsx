@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 
 import Imageform from "../../components/Forms/Imageform/Imageform";
@@ -59,6 +60,7 @@ const AboutPage: React.FC = (props: any) => {
     });
 
     const localKey = localStorage.getItem("key");
+
     if (localKey !== undefined && key === localKey) {
       localStorage.removeItem("key");
       window.location.reload();
@@ -72,7 +74,7 @@ const AboutPage: React.FC = (props: any) => {
     summaryText:
       "Love Development, Love Planning \nAlso Love Design and Communicate",
   };
-  const imageSource: string = "/images/paintingme.png";
+  const imageSource = "/images/paintingme.png";
 
   return (
     <AboutTotalContainer>

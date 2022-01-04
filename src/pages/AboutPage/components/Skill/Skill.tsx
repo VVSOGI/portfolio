@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import { SkillPropsType } from "../../types/types";
 import { passionBgColorChange } from "../../../../redux/actions";
 import {
   SKillContainer,
@@ -11,10 +13,6 @@ import {
 } from "./styles";
 
 import { connect } from "react-redux";
-
-interface SkillPropsType {
-  passionBgColorChange: (bgColor: string) => {};
-}
 
 const Skill: React.FC<SkillPropsType> = (props) => {
   const [selectIndex, setSelectIndex] = useState<number>(0);
