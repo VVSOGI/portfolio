@@ -61,10 +61,10 @@ const BackLight: React.FC<BackLightProps> = (props) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="460" cy="460" r="710" fill="#e2ca43" fill-opacity="1" />
-      <circle cx="200" cy="200" r="100" fill="#b38a33" fill-opacity="1" />
-      <circle cx="10" cy="450" r="150" fill="#8d6d27" fill-opacity="1" />
-      <circle cx="300" cy="450" r="70" fill="#705f39" fill-opacity="1" />
+      <circle cx="460" cy="460" r="710" fill="#e2ca43" fillOpacity="1" />
+      <circle cx="200" cy="200" r="100" fill="#b38a33" fillOpacity="1" />
+      <circle cx="10" cy="450" r="150" fill="#8d6d27" fillOpacity="1" />
+      <circle cx="300" cy="450" r="70" fill="#705f39" fillOpacity="1" />
       <ellipse
         cx="-327.323"
         cy="208.303"

@@ -30,8 +30,6 @@ const Skill: React.FC<SkillPropsType> = (props) => {
   ];
 
   useEffect(() => {
-    console.log(props);
-
     const container = document.getElementById("skillSet");
     const back = document.getElementById("back");
 

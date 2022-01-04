@@ -1,7 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router";
 import styled from "styled-components";
 import $ from "jquery";
+import { useNavigate } from "react-router";
+import { scrollMoving } from "../../../../redux/actions";
+import { connect } from "react-redux";
 
 const DevelopmentContainer = styled.div`
   position: relative;
@@ -55,11 +57,12 @@ const Back = styled.div`
   }
 `;
 
-const Development = () => {
+const Development = (props: { scrollFalse: () => {} }) => {
   const history = useNavigate();
   const handlePageBack = () => {
-    history("/");
+    props.scrollFalse();
     $.fn.fullpage.destroy("all");
+    history("/");
   };
 
   return (
@@ -78,4 +81,10 @@ const Development = () => {
   );
 };
 
-export default Development;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    scrollFalse: () => dispatch(scrollMoving(false)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Development);

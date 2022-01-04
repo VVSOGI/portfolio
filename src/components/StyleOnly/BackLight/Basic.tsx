@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
@@ -46,7 +46,7 @@ const Basic: React.FC<BackLightIsAnimation> = (props) => {
         cy="460.498"
         r="145.25"
         fill="#396fb4"
-        fill-opacity="0.8"
+        fillOpacity="0.8"
       />
       <ellipse
         cx="459.5"
@@ -61,7 +61,7 @@ const Basic: React.FC<BackLightIsAnimation> = (props) => {
         rx="193.667"
         ry="193.667"
         fill="#a59f69"
-        fill-opacity="0.7"
+        fillOpacity="0.7"
       />
       <ellipse
         cx="459.5"
@@ -69,19 +69,19 @@ const Basic: React.FC<BackLightIsAnimation> = (props) => {
         rx="242.083"
         ry="242.083"
         fill="#a59f69"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <circle
         cx="459.5"
         cy="460.5"
         r="290.5"
         fill="#a59f69"
-        fill-opacity="0.3"
+        fillOpacity="0.3"
       />
-      <circle cx="460" cy="460" r="340" fill="#a59f69" fill-opacity="0.3" />
-      <circle cx="460" cy="460" r="385" fill="#a59f69" fill-opacity="0.5" />
-      <circle cx="460" cy="460" r="425" fill="#e6d96b" fill-opacity="0.5" />
-      <circle cx="460" cy="460" r="460" fill="#b9af51" fill-opacity="0.8" />
+      <circle cx="460" cy="460" r="340" fill="#a59f69" fillOpacity="0.3" />
+      <circle cx="460" cy="460" r="385" fill="#a59f69" fillOpacity="0.5" />
+      <circle cx="460" cy="460" r="425" fill="#e6d96b" fillOpacity="0.5" />
+      <circle cx="460" cy="460" r="460" fill="#b9af51" fillOpacity="0.8" />
       <ellipse
         cx="327.323"
         cy="298.303"
