@@ -53,9 +53,9 @@ const NavRightContainer = styled.div`
     z-index: 10;
     a {
       color: #fff;
+      margin-left: 3em;
     }
     svg {
-      margin-left: 3em;
       list-style: none;
       cursor: pointer;
       transition: 0.4s;
