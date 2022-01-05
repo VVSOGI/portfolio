@@ -14,7 +14,7 @@ const AboutTotalContainer = styled.div`
 
 const About: React.FC<AllComponentProps> = (props) => {
   const [isIndexMatch, setIsIndexMatch] = useState<boolean>(false);
-  const aboutIndex = 3;
+  const aboutIndex = 2;
   const aboutObject = {
     headText: `About Me`,
     summaryText:

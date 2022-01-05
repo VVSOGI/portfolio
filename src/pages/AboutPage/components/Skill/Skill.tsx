@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 const Skill: React.FC<SkillPropsType> = (props) => {
   const [selectIndex, setSelectIndex] = useState<number>(0);
   const [isMouseIn, setIsMouseIn] = useState<boolean>(false);
+  const [isBackMouseIn, setIsBackMouseIn] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<[number, boolean]>([0, false]);
 
   const backgroundColor = [
@@ -45,10 +46,12 @@ const Skill: React.FC<SkillPropsType> = (props) => {
 
     back?.addEventListener("mouseover", () => {
       setIsMouseIn(true);
+      setIsBackMouseIn(true);
     });
 
     back?.addEventListener("mouseout", () => {
       setIsMouseIn(false);
+      setIsBackMouseIn(false);
     });
 
     back?.addEventListener("click", () => {
@@ -82,6 +85,7 @@ const Skill: React.FC<SkillPropsType> = (props) => {
         <Cursor
           active={isActive}
           index={selectIndex}
+          isBackMouseIn={isBackMouseIn}
           mouseIn={isMouseIn}
           className="cursor"
         />
@@ -89,13 +93,14 @@ const Skill: React.FC<SkillPropsType> = (props) => {
         {backgroundColor.map((item, i) => {
           return (
             <IntegratedContainer
+              id="text"
               bgColor={item.backgroundColor}
               isMouseover={selectIndex}
               active={isActive}
               index={i + 1}
               key={item.id}
             >
-              <Text active={isActive} index={selectIndex} id="text">
+              <Text active={isActive} index={selectIndex}>
                 {item.text}
               </Text>
               <HiddenText index={i + 1} active={isActive}>

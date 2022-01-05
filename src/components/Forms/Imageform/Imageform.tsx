@@ -13,10 +13,10 @@ const Imageform: React.FC<ImageformProps> = (props) => {
     let pageIndex = props.page?.page;
     if (pageIndex === 2) {
       $.fn.fullpage.destroy("all");
-      history("project");
+      history("about");
     } else if (pageIndex === 3) {
       $.fn.fullpage.destroy("all");
-      history("about");
+      history("project");
     }
   };
   return (

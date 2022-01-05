@@ -1,6 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { SkillStylesProps } from "../../types/types";
 import { ArrowBack } from "@styled-icons/boxicons-regular";
+
+const BigAndSmall = keyframes`
+  0% {
+    transform: scale(1);
+    color: #aaa;
+  }
+
+  50% {
+    transform: scale(1.7);
+    color: #fff;
+  }
+
+  100% {
+    transform: scale(1);
+    color: #aaa;
+  }
+`;
 
 export const SKillContainer = styled.div`
   width: 100%;
@@ -58,25 +75,33 @@ export const IntegratedContainer = styled.div<SkillStylesProps>`
 export const BackArrow = styled(ArrowBack)<SkillStylesProps>`
   width: 40px;
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 30px;
+  top: 30px;
   opacity: ${(props) => {
     return props.active[1] === true ? "1" : "0";
   }};
   color: #fff;
   transition: opacity 1s, transform 0.5s;
   z-index: 100;
+  animation: ${BigAndSmall} 2s infinite;
   :hover {
     transform: scale(1.5);
+    animation-play-state: paused;
   }
 `;
 
 export const Cursor = styled.div<SkillStylesProps>`
   width: ${(props) => {
-    return props.mouseIn ? "100px" : "20px";
+    if (props.isBackMouseIn) {
+      return "100px";
+    }
+    return props.mouseIn && !props.active[1] ? "100px" : "20px";
   }};
   height: ${(props) => {
-    return props.mouseIn ? "100px" : "20px";
+    if (props.isBackMouseIn) {
+      return "100px";
+    }
+    return props.mouseIn && !props.active[1] ? "100px" : "20px";
   }};
   border-radius: ${(props) => {
     if (props.index === 5) {

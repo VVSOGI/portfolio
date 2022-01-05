@@ -20,6 +20,7 @@ import {
   ProjectRenderContainer,
   BackgroundGrad,
 } from "./styles";
+import ScrollDown from "../../components/StyleOnly/ScrollDown/ScrollDown";
 
 const ProjectPage: React.FC = (props: any) => {
   const [isRender, setIsRender] = useState<boolean>(false);
@@ -64,6 +65,7 @@ const ProjectPage: React.FC = (props: any) => {
       <Nav />
 
       <ProjectRenderContainer>
+        <ScrollDown pageRender={isRender} />
         <BackgroundGrad pageRender={isRender} />
         <Textform
           headText={projectObject.headText}

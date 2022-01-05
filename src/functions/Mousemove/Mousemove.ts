@@ -16,8 +16,8 @@ export const Mousemove = (e: any) => {
   standardX = window.innerWidth / 2 - pageX;
   standardY = window.innerHeight / 2 - pageY;
 
-  maxX = Math.max(-150, Math.min(150, standardX));
-  maxY = Math.max(-150, Math.min(150, standardY));
+  maxX = Math.max(-550, Math.min(550, standardX));
+  maxY = Math.max(-550, Math.min(550, standardY));
 
   angleX = maxX * 0.22;
   angleY = maxY * 0.22;

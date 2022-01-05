@@ -14,6 +14,7 @@ import {
   AboutBottomVimeoIcons,
   AboutBottomGithubIcons,
   AboutBottomBackIcon,
+  AboutSudoContainter,
 } from "./styles";
 import Imageform from "../../../../components/Forms/Imageform/Imageform";
 
@@ -58,6 +59,7 @@ const AboutBottom: React.FC<AboutBottomPropsType> = (props) => {
             </AboutBottomIconContainer>
           </AboutBottomEtcContainer>
         </AboutBottomTextForm>
+
         <Imageform
           indexMatch={props.page?.page === BottomIndex}
           imageSrc={imageSource}

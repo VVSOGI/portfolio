@@ -27,7 +27,7 @@ const NavTotalContainer = styled.div<NavStyleProps>`
 
   svg {
     color: ${(props) => {
-      return props.navChange ? "#000" : "#fff";
+      return props.navChange ? "#000" : "#db3d3d";
     }};
   }
 `;

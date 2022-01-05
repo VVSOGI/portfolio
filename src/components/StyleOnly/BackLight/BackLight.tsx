@@ -24,7 +24,7 @@ const SvgTotalContainer = styled.svg<BackLightStyleProps>`
     ${(props) => {
       return props.isLoading === false ? "translateX(0%)" : "translateX(60%)";
     }};
-  transition: 1.5s;
+  transition: 2s;
   overflow: visible;
   @media only screen and (max-width: 1024px) {
     transform: scale(1);

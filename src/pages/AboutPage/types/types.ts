@@ -1,6 +1,7 @@
 export interface SkillStylesProps {
   index: number;
   active: [number, boolean];
+  isBackMouseIn?: boolean;
   mouseIn?: boolean;
   bgColor?: string;
   isMouseover?: number;

@@ -2,7 +2,7 @@ import { PAGE_BUTTON_CLICK, PAGE_MOVE_INDEX } from "../constants";
 
 const initalState = {
   isPageMove: false,
-  page: 0,
+  page: 1,
 };
 
 export const pageReducer = (state = initalState, action: any) => {

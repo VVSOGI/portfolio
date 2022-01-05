@@ -6,16 +6,12 @@ import { AboutBottomStylesProp } from "../../types/types";
 export const AboutBottomContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #fff;
 `;
 
 export const AboutBottomMainContainer = styled.div<AboutBottomStylesProp>`
   width: 100%;
   height: 105%;
   position: relative;
-  background-color: ${(props) => {
-    return props.bgColor;
-  }};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,12 +43,15 @@ export const AboutBottomTilteText = styled.div<TextAndImageStyleProps>`
     return props.isMatch ? `1.2s` : `0s`;
   }};
   @media only screen and (max-width: 1024px) {
+    font-size: 120px;
+  }
+  @media only screen and (max-width: 768px) {
     font-size: 72px;
   }
 `;
 
 export const AboutBottomLine = styled.div<TextAndImageStyleProps>`
-  width: 30%;
+  width: 50%;
   height: 1%;
   background-color: #ff6c6c;
   margin-bottom: 1em;
@@ -64,7 +63,10 @@ export const AboutBottomLine = styled.div<TextAndImageStyleProps>`
     return props.isMatch ? `1.5s` : `0s`;
   }};
   @media only screen and (max-width: 1024px) {
-    width: 70%;
+    width: 80%;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 65%;
   }
 `;
 
@@ -159,10 +161,19 @@ export const AboutBottomBackIcon = styled.div<TextAndImageStyleProps>`
   }
   @media only screen and (max-width: 1024px) {
     width: 100%;
+    bottom: 15%;
     .line {
       ::before {
-        top: 35%;
+        top: 32%;
       }
     }
   }
+`;
+
+export const AboutSudoContainter = styled.div`
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  right: 0;
+  background-color: #333;
 `;

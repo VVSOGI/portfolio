@@ -14,7 +14,7 @@ const ProjectTotalContainer = styled.div`
 
 const Project: React.FC<AllComponentProps> = (props) => {
   const [isIndexMatch, setIsIndexMatch] = useState<boolean>(false);
-  const ProjectIndex = 2;
+  const ProjectIndex = 3;
   const projectObject = {
     headText: `FIND RECIPES \nBOBPAGO`,
     summaryText: "Enjoy the Recipe that Alphago AI recommends.",

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Imageform from "../../components/Forms/Imageform/Imageform";
 import Textform from "../../components/Forms/Textform/Textform";
 import Nav from "../../components/Nav/Nav";
-import Basic from "../../components/StyleOnly/BackLight/Basic";
 import MapNumber from "../../components/StyleOnly/MapNumber/MapNumber";
 
 import { connect } from "react-redux";
@@ -24,6 +23,8 @@ import {
   BackgroundGrad,
   BackIconContainer,
 } from "./styles";
+import BackLight from "../../components/StyleOnly/BackLight/BackLight";
+import ScrollDown from "../../components/StyleOnly/ScrollDown/ScrollDown";
 
 require("fullpage.js/vendors/scrolloverflow");
 require("fullpage.js");
@@ -40,7 +41,7 @@ const AboutPage: React.FC = (props: any) => {
   };
 
   useEffect(() => {
-    setIsRender(true);
+    props.pageIndexChange(1);
 
     $("#fullpage2").fullpage({
       autoScrolling: true,
@@ -69,6 +70,14 @@ const AboutPage: React.FC = (props: any) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (props.page.page === 1) {
+      setIsRender(true);
+    } else {
+      setIsRender(false);
+    }
+  }, [props.page.page]);
+
   const aboutObject = {
     headText: `About Me`,
     summaryText:
@@ -79,7 +88,7 @@ const AboutPage: React.FC = (props: any) => {
   return (
     <AboutTotalContainer>
       <Nav />
-      <Basic />
+      <BackLight isLoading={false} />
 
       <AboutFullpage id="fullpage2">
         <ProjectRenderContainer className="section 1">
@@ -91,6 +100,7 @@ const AboutPage: React.FC = (props: any) => {
           >
             <div className="line" />
           </BackIconContainer>
+          <ScrollDown pageRender={isRender} />
           <BackgroundGrad pageRender={isRender} />
           <Textform
             headText={aboutObject.headText}

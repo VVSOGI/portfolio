@@ -10,7 +10,7 @@ export const PassionContainer = styled.div`
 
 export const PassionMainContainer = styled.div<PassionStylesProps>`
   width: 100%;
-  height: 105%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,13 +21,14 @@ export const PassionMainContainer = styled.div<PassionStylesProps>`
 `;
 
 export const PassionBigText = styled.span<PassionStylesProps>`
-  font-size: 160px;
+  font-size: 140px;
   font-weight: 800;
   position: absolute;
-  top: 10%;
-  left: ${(props) => {
-    return props.passionEnter ? props.pos + "%" : "-45%";
-  }}; // -45%
+  top: ${(props) => {
+    return props.passionEnter ? props.pos + "%" : "0%";
+  }};
+  left: 5%; // -45%
+  transform: translateY(-5%);
   transition: 1s;
   transition-delay: ${(props) => {
     return props.passionEnter ? ".5s" : "0";
@@ -35,9 +36,18 @@ export const PassionBigText = styled.span<PassionStylesProps>`
   color: ${(props) => {
     return props.bgColor;
   }};
-  writing-mode: vertical-rl;
+  z-index: ${(props) => {
+    return props.pos;
+  }};
+  font-family: "Black Han Sans", sans-serif;
+  /* writing-mode: vertical-rl; */
   @media only screen and (max-width: 1024px) {
-    display: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -46,7 +56,7 @@ export const PassionTextContainer = styled.div<PassionStylesProps>`
   right: ${(props) => {
     return props.passionEnter ? "5%" : "-45%";
   }};
-  top: 15%;
+  top: 10%;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -68,13 +78,10 @@ export const PassionTextContainer = styled.div<PassionStylesProps>`
 
 export const PassionHeadText = styled.span`
   margin-bottom: 1em;
-  font-size: 22px;
+  font-size: 100px;
   font-weight: 800;
-  span {
-    color: #eee;
-  }
   @media only screen and (max-width: 1024px) {
-    font-size: 24px;
+    display: none;
   }
 `;
 

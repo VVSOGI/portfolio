@@ -18,10 +18,10 @@ const Textform: React.FC<TextformProps> = (props: any) => {
   const handleButton = () => {
     if (props.pageIndex === 2) {
       $.fn.fullpage.destroy("all");
-      history("project");
+      history("about");
     } else if (props.pageIndex === 3) {
       $.fn.fullpage.destroy("all");
-      history("about");
+      history("project");
     }
   };
 
