@@ -117,7 +117,7 @@ const AboutPage: React.FC = (props: any) => {
           <MapNumber
             pageIndex={0}
             indexMatch={false}
-            number={`02`}
+            number={`01`}
             pageRender={isRender}
           />
         </ProjectRenderContainer>
