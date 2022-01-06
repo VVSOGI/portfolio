@@ -21,7 +21,6 @@ import {
 import { connect } from "react-redux";
 import { pageChange, pageIndexChange } from "../../redux/actions";
 import Spacecloud from "../../components/StyleOnly/Spacecloud/Spacecloud";
-import { useLocation } from "react-router";
 
 require("fullpage.js/vendors/scrolloverflow");
 require("fullpage.js");
@@ -39,12 +38,6 @@ const MainPage: React.FC<any> = (props) => {
     setMapIndex(1);
     props.pageChange();
 
-    // const localKey = localStorage.getItem("key");
-    // if (localKey) {
-    //   localStorage.removeItem("key");
-    //   window.location.reload();
-    // }
-
     /* Fullpage.js */
 
     $("#fullpage").fullpage({
@@ -59,6 +52,11 @@ const MainPage: React.FC<any> = (props) => {
         props.pageIndexChange(destination);
       },
     });
+
+    const isFullpageDoubleChecked = Object.keys($("#fullpage")[0])[2];
+    if (!isFullpageDoubleChecked) {
+      window.location.reload();
+    }
 
     /* Fullpage.js */
   }, []);
